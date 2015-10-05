@@ -1,0 +1,19 @@
+.code-src, .code-dist {
+  font-size: 13px;
+  letter-spacing: auto;
+  line-height: 20px;
+  font-family: 'Monaco', 'Ubuntu Mono', 'Consolas', 'Courier','Courier New', 'Lucida Console', monospace;
+}
+
+.code-src {
+}
+
+.code-dist {
+  overflow: auto;
+  background-color: #fdf6e3;
+  white-space: pre;
+}
+
+code span {
+  white-space: nowrap;
+}
