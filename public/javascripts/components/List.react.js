@@ -1,6 +1,7 @@
+require('../../stylesheets/list.css');
 var React = require('react/addons');
 var Editor = require('./Editor.react');
-var db = require('../../db/nedb.config');
+var db = require('../../../db/nedb.config');
 var listEvent = require('../events').listEvent;
 var snippetEvent = require('../events').snippetEvent;
 
@@ -21,10 +22,15 @@ var ListItem = React.createClass({
 
   render: function () {
     return (
-      <li>
-        <button onClick={this.selectSnippet.bind(this, this.props.snippetId)}>{this.props.title + ' (id: ' + this.props.snippetId + ')'}</button>
-        <button onClick={this.deleteSnippet.bind(this, this.props.snippetId)}>-</button>
-      </li>
+      <div className='card' onClick={this.selectSnippet.bind(this, this.props.snippetId)}>
+        <div className='content'>
+          <div className='header'>{this.props.title}</div>
+          <span className='meta'>{'@ ' + this.props.updatedAt}</span>
+        </div>
+        <div className="ui bottom attached button" onClick={this.deleteSnippet.bind(this, this.props.snippetId)}>
+          Delete
+        </div>
+      </div>
     );
   }
 });
@@ -42,13 +48,14 @@ var List = React.createClass({
       title: 'Untitled Snippet',
       lang: 'javascript',
       tags: [],
-      code: ''
+      code: '',
+      updatedAt: (new Date()).toLocaleString()
     }, function (err, doc) {
       if (err)
         console.error(err)
       else {
         var tmp = _this.state.records.slice(0);
-        tmp.push(doc);
+        tmp.unshift(doc);
         _this.setState({records: tmp});
       }
     });
@@ -56,29 +63,32 @@ var List = React.createClass({
 
   refreshList: function () {
     var _this = this;
-    db.find({}, function (err, docs) {
+    db.find({}).sort({ planet: 1 }).exec(function (err, docs) {
       _this.setState({records: docs});
     });
   },
 
   componentDidMount: function () {
     var _this = this;
+
     _this.refreshList();
     listEvent.on('refresh-list', function () {
       _this.refreshList();
+    });
+    listEvent.on('add-snippet', function () {
+      _this.createSnippet();
     });
   },
 
   render: function () {
     var ListItems = this.state.records.map(function (doc) {
-      return <ListItem snippetId={doc._id} title={doc.title} />;
+      return <ListItem snippetId={doc._id} title={doc.title} updatedAt={doc.updatedAt} />;
     });
     return (
-      <div>
-        <button onClick={this.createSnippet.bind(this)}>+</button>
-        <ul>
+      <div className='ui grid full-height list-area'>
+        <div className="ui link cards">
           {ListItems}
-        </ul>
+        </div>
       </div>
     );
   }

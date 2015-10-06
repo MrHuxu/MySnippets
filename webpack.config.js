@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: ['webpack/hot/dev-server', './public/entry.js']
+    app: ['webpack/hot/dev-server', './public/javascripts/entry.js']
   },
 
   output: {
