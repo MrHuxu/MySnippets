@@ -25,7 +25,7 @@ var ListItem = React.createClass({
       <div className='card' onClick={this.selectSnippet.bind(this, this.props.snippetId)}>
         <div className='content'>
           <div className='header'>{this.props.title}</div>
-          <span className='meta'>{'@ ' + this.props.updatedAt}</span>
+          <span className='meta'>{'@ ' + this.props.updatedAt.toLocaleString()}</span>
         </div>
         <div className="ui bottom attached button" onClick={this.deleteSnippet.bind(this, this.props.snippetId)}>
           Delete
@@ -49,7 +49,7 @@ var List = React.createClass({
       lang: 'javascript',
       tags: [],
       code: '',
-      updatedAt: (new Date()).toLocaleString()
+      updatedAt: new Date()
     }, function (err, doc) {
       if (err)
         console.error(err)
@@ -63,7 +63,7 @@ var List = React.createClass({
 
   refreshList: function () {
     var _this = this;
-    db.find({}).sort({ planet: 1 }).exec(function (err, docs) {
+    db.find({}).sort({ updatedAt: -1 }).exec(function (err, docs) {
       _this.setState({records: docs});
     });
   },

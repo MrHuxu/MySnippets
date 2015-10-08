@@ -12,11 +12,19 @@ var s = require('../lib/semantic.min.js');
 var Editor = React.createClass({
   snippetID: null,
   mixins: [React.addons.LinkedStateMixin],
+  languageNames: {
+    ruby       : 'Ruby',
+    javascript : 'Javascript',
+    css        : 'CSS',
+    html       : 'HTML',
+    sql        : 'SQL',
+    markdown   : 'Markdown'
+  },
 
   getInitialState: function () {
     return {
       title: '',
-      lang: 'javascript',
+      lang: '',
       tags: [],
       code: ''
     };
@@ -41,7 +49,7 @@ var Editor = React.createClass({
       title: _this.state.title,
       lang: _this.state.lang,
       code: _this.state.code,
-      updatedAt: (new Date()).toLocaleString()
+      updatedAt: new Date()
     }, function (err) {
       _this.toShow();
       listEvent.emit('refresh-list');
@@ -55,7 +63,14 @@ var Editor = React.createClass({
       _this.saveToDB();
     });
 
-    $('.ui.dropdown').dropdown();
+    $('.ui.dropdown')
+      .dropdown('set selected', _this.state.lang)
+      .dropdown({
+        on: 'hover',
+        onChange: function (value) {
+          _this.setState({lang: value});
+        }
+      });
   },
 
   componentDidMount: function () {
@@ -89,7 +104,15 @@ var Editor = React.createClass({
   },
 
   render: function () {
+    var _this = this;
+
     var highlightResult = this.state.lang ? hljs.highlight(this.state.lang, this.state.code) : hljs.highlightAuto(this.state.code);
+    var languageOptions = Object.keys(_this.languageNames).map(function (language) {
+      return (
+        <div className='item' data-value={language}>{_this.languageNames[language]}</div>
+      )
+    });
+
     var editorArea = (
       <div className='editor-area'>
         <div className='ui grid'>
@@ -103,14 +126,9 @@ var Editor = React.createClass({
             <div className='ui selection dropdown'>
               <input type='hidden' name='gender' />
               <i className='dropdown icon'></i>
-              <div className='default text'>Gender</div>
+              <div className="default text">Choose Language</div>
               <div className='menu'>
-                <div className='item' data-value='ruby'>Ruby</div>
-                <div className='item' data-value='javascript'>Javascript</div>
-                <div className='item' data-value='css'>CSS</div>
-                <div className='item' data-value='html'>HTML</div>
-                <div className='item' data-value='sql'>SQL</div>
-                <div className='item' data-value='markdown'>Markdown</div>
+                {languageOptions}
               </div>
             </div>
           </div><br /><br />
