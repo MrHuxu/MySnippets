@@ -12,7 +12,11 @@ app.on('window-all-closed', function () {
 });
 
 app.on('ready', function () {
-  mainWindow = new BrowserWindow({width: 1200, height: 800});
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    icon: ('file://' + __dirname + '/public/resources/logo.icns')
+  });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
   mainWindow.openDevTools();
   mainWindow.on('closed', function () {
