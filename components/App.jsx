@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
-import List from './List';
-import Editor from './Editor';
+import SnippetList from './SnippetList';
+import SnippetEditor from './SnippetEditor';
 import { Grid, Row, Col } from 'react-flexbox-grid/lib';
 
 class App extends Component {
@@ -11,8 +11,8 @@ class App extends Component {
         <Menu />
         <Grid fluid>
           <Row>
-            <Col xs={4}>List</Col>
-            <Col xs={8}>Editor</Col>
+            <Col xs={4}><SnippetList /></Col>
+            <Col xs={8}><SnippetEditor /></Col>
           </Row>
         </Grid>
       </div>
