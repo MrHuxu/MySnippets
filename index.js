@@ -1,6 +1,8 @@
 import './node_modules/animate.css/animate.min.css';
 import './node_modules/highlight.js/styles/solarized-dark.css';
 
+import './stylesheets/common.css';
+
 import $ from 'jquery';
 window.jQuery = $; // Assure it's available globally.
 
