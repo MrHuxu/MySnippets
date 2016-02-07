@@ -7,15 +7,18 @@ import CardText from 'material-ui/lib/card/card-text';
 
 class SnippetItem extends Component {
   render () {
+    const { metaData } = this.props;
+    console.log(metaData);
+
     return (
       <Card>
         <CardHeader
-          title="URL Avatar"
-          subtitle="@ 2015/01/07"
-          avatar="http://lorempixel.com/100/100/nature/"
+          title    = {metaData.title}
+          subtitle = {`@ ${metaData.time}`}
+          avatar   = "http://lorempixel.com/100/100/nature/"
         />
         <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          {metaData.content.slice(0, 100)}
         </CardText>
         <CardActions>
           <FlatButton label="Delete" primary={true} />

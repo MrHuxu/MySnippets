@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
@@ -11,15 +12,23 @@ import SnippetItem from './SnippetItem';
 
 class SnippetList extends List {
   render () {
+    const { records } = this.props;
+    const items = records.map(record => <ListItem><SnippetItem metaData={record} /></ListItem>);
+
     return (
       <div>
         <List>
-          <ListItem><SnippetItem /></ListItem>
-          <ListItem><SnippetItem /></ListItem>
+          {items}
         </List>
       </div>
     );
   }
 }
 
-export default SnippetList;
+var mapStateToProps = function (state) {
+  return {
+    records: state.snippet.records
+  };
+};
+
+export default connect(mapStateToProps)(SnippetList);

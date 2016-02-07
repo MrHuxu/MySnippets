@@ -9,7 +9,7 @@ window.jQuery = $; // Assure it's available globally.
 import React, { Component } from 'react';
 import reactDom from 'react-dom';
 import { Provider } from 'react-redux';
-// import { rootStore } from './store';
+import { rootStore } from './store';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
@@ -17,7 +17,7 @@ injectTapEventPlugin();
 import App from './components/App.jsx';
 
 reactDom.render(
-  <Provider>
+  <Provider store={rootStore}>
     <App />
   </Provider>,
   document.getElementById('my-snippets')

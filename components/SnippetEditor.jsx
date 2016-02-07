@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import Paper from 'material-ui/lib/paper';
 import { Grid, Row, Col } from 'react-flexbox-grid/lib';
 
 const style = {
@@ -33,6 +34,16 @@ class SnippetEditor extends Component {
 
   render () {
     const menuItems = Object.keys(langs).map(key => <MenuItem value={key} primaryText={langs[key]}/>)
+    const editArea = (
+      <TextField
+        floatingLabelText = "Snippet Content"
+        multiLine         = {true}
+        rows              = {15}
+        rowsMax           = {15}
+        fullWidth         = {true}
+      />
+    );
+
     return (
       <Grid fluid style={style.global}>
         <Row>
@@ -52,13 +63,7 @@ class SnippetEditor extends Component {
           </Col>
 
           <Col xs={12}>
-            <TextField
-              floatingLabelText = "Snippet Content"
-              multiLine         = {true}
-              rows              = {15}
-              rowsMax           = {15}
-              fullWidth         = {true}
-            />
+            <Paper style={style} zDepth={1} children={editArea}/>
           </Col>
 
         </Row>
