@@ -27,10 +27,8 @@ gulp.task("webpack-dev-server", function(callback) {
   });
 });
 
-gulp.task('cache', shell.task('node lib/cache-all --harmony'));
+gulp.task('prd', ['webpack'], shell.task('NODE_ENV=production forever start server.js --harmony'));
 
-gulp.task('prd', ['webpack', 'cache'], shell.task('NODE_ENV=production forever start bin/www --harmony'));
+gulp.task('dev', ['webpack-dev-server'], shell.task('NODE_ENV=development node server --harmony'));
 
-gulp.task('dev', ['webpack-dev-server'], shell.task('node server --harmony'));
-
-gulp.task('dev-ele', ['webpack-dev-server'], shell.task('/Applications/Electron.app/Contents/MacOS/Electron .'));
+gulp.task('dev-ele', ['webpack-dev-server'], shell.task('NODE_ENV=development /Applications/Electron.app/Contents/MacOS/Electron .'));

@@ -18,7 +18,7 @@ class SnippetItem extends Component {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </CardText>
         <CardActions>
-          <FlatButton label="Delete" />
+          <FlatButton label="Delete" primary={true} />
         </CardActions>
       </Card>
     );

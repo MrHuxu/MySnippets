@@ -36,14 +36,31 @@ class SnippetEditor extends Component {
     return (
       <Grid fluid style={style.global}>
         <Row>
+
           <Col xs={6}>
-            <TextField hintText="Title Field" floatingLabelText="Title" />
+            <TextField hintText="Title" floatingLabelText="Enter Title" />
           </Col>
+
           <Col xs={6}>
-            <SelectField floatingLabelText="Language" value={this.state.value} onChange={this.handleChange}>
+            <SelectField
+              floatingLabelText = "Select Language"
+              value             = {this.state.value}
+              onChange          = {this.handleChange}
+            >
               {menuItems}
             </SelectField>
           </Col>
+
+          <Col xs={12}>
+            <TextField
+              floatingLabelText = "Snippet Content"
+              multiLine         = {true}
+              rows              = {15}
+              rowsMax           = {15}
+              fullWidth         = {true}
+            />
+          </Col>
+
         </Row>
       </Grid>
     );

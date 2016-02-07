@@ -12,7 +12,7 @@ module.exports = {
     './index' // Your appʼs entry point
   ],
   output: {
-    path: path.join(__dirname, 'public', 'built'),
+    path: path.join(__dirname, 'vendor', 'built'),
     filename: 'bundle.js',
     publicPath: 'http://localhost:6789/assets/'
   },
