@@ -13,7 +13,7 @@ import SnippetItem from './SnippetItem';
 class SnippetList extends List {
   render () {
     const { records } = this.props;
-    const items = records.map(record => <ListItem><SnippetItem metaData={record} /></ListItem>);
+    const items = records.map(record => <ListItem key={record._id}><SnippetItem metaData={record} /></ListItem>);
 
     return (
       <div>

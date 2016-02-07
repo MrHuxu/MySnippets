@@ -1,4 +1,4 @@
-var Datastore = require('nedb');
-var db = new Datastore({ filename: 'snippets.db', autoload: true});
+import Datastore from 'nedb';
+const db = new Datastore({ filename: 'snippets.db', autoload: true});
 
-module.exports = db;
+export default db;
