@@ -33,7 +33,7 @@ class SnippetEditor extends Component {
   }
 
   render () {
-    const menuItems = Object.keys(langs).map(key => <MenuItem value={key} primaryText={langs[key]}/>)
+    const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={key} primaryText={langs[key]}/>)
     const editArea = (
       <TextField
         floatingLabelText = "Snippet Content"

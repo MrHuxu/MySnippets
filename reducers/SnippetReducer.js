@@ -4,16 +4,30 @@ import {
 } from '../actions/SnippetActions';
 
 export function snippet (state = {
-  records: []
+  records: {},
+  snack: {
+    open: false,
+    message: ''
+  }
 }, action) {
+  var copy = Object.assign({}, state);
+
   switch (action.type) {
     case ADD_SNIPPET:
-      return Object.assign({}, state, { records: [action.content, ...state.records] });
+      copy.records[action.content._id] = action.content;
+      return copy;
 
     case DELETE_SNIPPET:
-      return Object.assign({}, state, { records: state.records.filter(record => record._id !== action.content) });
+      let message = copy.records[action.content].title;
+      delete copy.records[action.content];
+      return Object.assign(copy, {
+        snack: {
+          open: true,
+          message: message
+        }
+      });
 
     default:
-      return state;
+      return copy;
   }
 }

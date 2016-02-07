@@ -6,12 +6,3 @@ body {
   margin: 0;
   overflow-y: hidden;
 }
-
-.snippet-list {
-  overflow-y: auto;
-  padding-bottom: 70px;
-}
-
-.grid-container {
-  padding-left: 10px;
-}

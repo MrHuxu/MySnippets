@@ -10,12 +10,18 @@ import { destroySnippet } from '../actions/SnippetActions';
 class SnippetItem extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      open: false,
+    };
 
     this.handleClickDeleteButton = this.handleClickDeleteButton.bind(this);
   }
 
   handleClickDeleteButton (id) {
     this.props.dispatch(destroySnippet(id));
+    this.setState({
+      open: true,
+    });
   }
 
   render () {

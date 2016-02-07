@@ -27,7 +27,7 @@ class SnippetList extends List {
 
 var mapStateToProps = function (state) {
   return {
-    records: state.snippet.records
+    records: Object.keys(state.snippet.records).map(key => state.snippet.records[key])
   };
 };
 
