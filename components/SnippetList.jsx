@@ -11,6 +11,7 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 import SnippetItem from './SnippetItem';
+import { selectSnippet } from '../actions/SnippetActions';
 
 class SnippetList extends List {
   constructor (props, context) {
@@ -19,13 +20,19 @@ class SnippetList extends List {
       selectedIndex: 0
     };
 
+    const { dispatch, records } = this.props;
+    if (records.length) dispatch(selectSnippet(records[0]._id));
+
     this.handleUpdateSelectedIndex = this.handleUpdateSelectedIndex.bind(this);
   }
 
   handleUpdateSelectedIndex (e, index) {
+    const { dispatch, records } = this.props;
+
     this.setState({
       selectedIndex: index,
     });
+    dispatch(selectSnippet(records[index]._id));
   }
 
   render () {

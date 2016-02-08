@@ -32,7 +32,7 @@ class SnippetItem extends Component {
         <CardHeader
           title    = {metaData.title}
           subtitle = {`@ ${metaData.time}`}
-          avatar   = "/lang-icons/markdown.svg"
+          avatar   = {`/lang-icons/${metaData.lang}.svg`}
         />
         <CardText>
           {metaData.content.slice(0, 100)}

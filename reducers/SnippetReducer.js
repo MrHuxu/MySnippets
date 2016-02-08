@@ -1,12 +1,14 @@
 import {
   ADD_SNIPPET,
-  DELETE_SNIPPET
+  DELETE_SNIPPET,
+  SELECT_SNIPPET
 } from '../actions/SnippetActions';
 
 export function snippet (state = {
-  ids      : [],
-  entities : {},
-  snack    : {
+  ids        : [],
+  entities   : {},
+  selectedId : '',
+  snack      : {
     open    : false,
     message : ''
   }
@@ -29,6 +31,10 @@ export function snippet (state = {
           message: message
         }
       });
+
+    case SELECT_SNIPPET:
+      copy.selectedId = action.content;
+      return copy;
 
     default:
       return copy;

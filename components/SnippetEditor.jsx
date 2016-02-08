@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
@@ -12,8 +13,8 @@ const style = {
 };
 
 const langs = {
-  ruby       : 'Ruby',   
   javascript : 'Javascript',    
+  ruby       : 'Ruby',   
   css        : 'CSS',   
   html       : 'HTML',    
   mysql      : 'SQL',   
@@ -33,6 +34,7 @@ class SnippetEditor extends Component {
   }
 
   render () {
+    const { selectedId, snippet } = this.props;
     const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={key} primaryText={langs[key]}/>)
     const editArea = (
       <TextField
@@ -45,7 +47,7 @@ class SnippetEditor extends Component {
       />
     );
 
-    return (
+    return selectedId ? (
       <Grid fluid style={style.global}>
         <Row>
 
@@ -69,8 +71,15 @@ class SnippetEditor extends Component {
 
         </Row>
       </Grid>
-    );
+    ) : null;
   }
 }
 
-export default SnippetEditor;
+var mapStateToProps = function (state) {
+  return {
+    selectedId : state.snippet.selectedId,
+    snippet    : state.snippet.entities[state.snippet.selectedId]
+  };
+};
+
+export default connect(mapStateToProps)(SnippetEditor);
