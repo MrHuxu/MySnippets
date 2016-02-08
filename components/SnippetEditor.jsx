@@ -16,7 +16,7 @@ const langs = {
   javascript : 'Javascript',    
   css        : 'CSS',   
   html       : 'HTML',    
-  sql        : 'SQL',   
+  mysql      : 'SQL',   
   markdown   : 'Markdown'
 };
 
@@ -41,6 +41,7 @@ class SnippetEditor extends Component {
         rows              = {15}
         rowsMax           = {15}
         fullWidth         = {true}
+        label             = {'hehe'}
       />
     );
 
@@ -63,7 +64,7 @@ class SnippetEditor extends Component {
           </Col>
 
           <Col xs={12}>
-            <Paper style={style} zDepth={1} children={editArea}/>
+            {editArea}
           </Col>
 
         </Row>

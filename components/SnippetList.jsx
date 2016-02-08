@@ -9,6 +9,7 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 import SnippetItem from './SnippetItem';
+import ListExampleSelectable from './test';
 
 class SnippetList extends List {
   render () {
@@ -17,9 +18,7 @@ class SnippetList extends List {
 
     return (
       <div>
-        <List>
-          {items}
-        </List>
+        {ListExampleSelectable()}
       </div>
     );
   }
