@@ -24,13 +24,20 @@ const langs = {
 class SnippetEditor extends Component {
   constructor (props) {
     super(props);
-    this.state = {value: null};
+    this.state = {
+      lang: null
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange (event, index, value) {
-    this.setState({value});
+    this.setState({ lang: value });
+  }
+
+  componentWillReceiveProps (props) {
+    const { selectedId, snippet } = props;
+    if (snippet) this.setState({ lang: snippet.lang });
   }
 
   render () {
@@ -58,7 +65,7 @@ class SnippetEditor extends Component {
           <Col xs={6}>
             <SelectField
               floatingLabelText = "Select Language"
-              value             = {this.state.value}
+              value             = {this.state.lang}
               onChange          = {this.handleChange}
             >
               {menuItems}

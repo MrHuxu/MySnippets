@@ -7,7 +7,7 @@ import {
 export function snippet (state = {
   ids        : [],
   entities   : {},
-  selectedId : '',
+  selectedId : null,
   snack      : {
     open    : false,
     message : ''
@@ -25,6 +25,11 @@ export function snippet (state = {
       copy.ids = copy.ids.filter(id => id !== action.content)
       let message = copy.entities[action.content].title;
       delete copy.entities[action.content];
+      if (copy.ids.length) {
+        copy.selectedId = copy.ids[0];
+      } else {
+        copy.selectedId = null;
+      }
       return Object.assign(copy, {
         snack: {
           open: true,
