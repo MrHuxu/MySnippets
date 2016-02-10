@@ -6,6 +6,7 @@ import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import Paper from 'material-ui/lib/paper';
 import { Grid, Row, Col } from 'react-flexbox-grid/lib';
+import { updateSnippet } from '../actions/SnippetActions';
 
 const style = {
   global: {
@@ -39,8 +40,15 @@ class SnippetEditor extends Component {
   }
 
   componentWillReceiveProps (props) {
-    const { selectedId, snippet } = props;
-    if (snippet) this.setState({ lang: snippet.lang });
+    const { dispatch, selectedId, snippet } = props;
+    if (snippet) this.setState(snippet);
+    if (this.props) {
+      dispatch(updateSnippet({
+        _id: this.props.selectedId,
+      }, Object.assign(this.state, {
+        time: (new Date()).toLocaleString()
+      })));
+    }
   }
 
   render () {
