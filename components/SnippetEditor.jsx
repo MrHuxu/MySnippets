@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import linkState from 'react-link-state';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
@@ -25,7 +26,9 @@ class SnippetEditor extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      lang: null
+      title   : null,
+      lang    : null,
+      content : null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,6 +54,7 @@ class SnippetEditor extends Component {
         rowsMax           = {15}
         fullWidth         = {true}
         label             = {'hehe'}
+        valueLink         = {linkState(this, 'content')}
       />
     );
 
@@ -59,7 +63,11 @@ class SnippetEditor extends Component {
         <Row>
 
           <Col xs={6}>
-            <TextField hintText="Title" floatingLabelText="Enter Title" />
+            <TextField
+              hintText          = "Title"
+              valueLink         = {linkState(this, 'title')}
+              floatingLabelText = "Enter Title"
+            />
           </Col>
 
           <Col xs={6}>

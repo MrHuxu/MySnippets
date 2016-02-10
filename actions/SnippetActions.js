@@ -16,6 +16,17 @@ export function deleteSnippet (id) {
   };
 }
 
+export const REFRESH_SNIPPET = 'REFRESH_SNIPPET';
+export function refreshSnippet (id, update) {
+  return {
+    type    : REFRESH_SNIPPET,
+    content : {
+      id     : id,
+      update : update
+    }
+  };
+}
+
 export const SELECT_SNIPPET = 'SELECT_SNIPPET';
 export function selectSnippet (id) {
   return {
@@ -36,6 +47,14 @@ export function createSnippet () {
     db.insert(doc, (err, doc) => {
       dispatch(addSnippet(doc));
       dispatch(selectSnippet(doc._id));
+    });
+  };
+}
+
+export function updateSnippet (query, update) {
+  return function (dispatch) {
+    db.update(query, update, { multi: true }, function (err, numReplaced) {
+      dispatch(refreshSnippet(query._id, update));
     });
   };
 }

@@ -1,6 +1,7 @@
 import {
   ADD_SNIPPET,
   DELETE_SNIPPET,
+  REFRESH_SNIPPET,
   SELECT_SNIPPET
 } from '../actions/SnippetActions';
 
@@ -36,6 +37,10 @@ export function snippet (state = {
           message: message
         }
       });
+
+    case REFRESH_SNIPPET:
+      copy.entities[action.content.id] = action.content.update;
+      return copy;
 
     case SELECT_SNIPPET:
       copy.selectedId = action.content;
