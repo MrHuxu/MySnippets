@@ -11,6 +11,10 @@ import { updateSnippet } from '../actions/SnippetActions';
 const style = {
   global: {
     margin: '10px 0 0 0'
+  },
+
+  contentArea: {
+    margin: '20px 0 0 0'
   }
 };
 
@@ -33,16 +37,34 @@ class SnippetEditor extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.checkSnippetChanged = this.checkSnippetChanged.bind(this);
+    this.updateCurrentSnippet = this.updateCurrentSnippet.bind(this);
   }
 
   handleChange (event, index, value) {
-    this.setState({ lang: value });
+    this.state.lang = value;
+    this.forceUpdate();
+    this.updateCurrentSnippet();
   }
 
-  componentWillReceiveProps (props) {
-    const { dispatch, selectedId, snippet } = props;
-    if (snippet) this.setState(snippet);
+  checkSnippetChanged () {
     if (this.props) {
+      const { snippet } = this.props;
+
+      return snippet && !(
+        this.state.title   === snippet.title &&
+        this.state.lang    === snippet.lang &&
+        this.state.content === snippet.content
+      );
+    } else {
+      return false;
+    }
+  }
+
+  updateCurrentSnippet () {
+    if (this.checkSnippetChanged()) {
+      const { dispatch } = this.props;
+
       dispatch(updateSnippet({
         _id: this.props.selectedId,
       }, Object.assign(this.state, {
@@ -51,30 +73,43 @@ class SnippetEditor extends Component {
     }
   }
 
+  componentWillReceiveProps (props) {
+    const { dispatch, selectedId, snippet } = props;
+    if (snippet) this.setState(snippet);
+    this.updateCurrentSnippet();
+  }
+
   render () {
     const { selectedId, snippet } = this.props;
     const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={key} primaryText={langs[key]}/>)
     const editArea = (
-      <TextField
-        floatingLabelText = "Snippet Content"
-        multiLine         = {true}
-        rows              = {15}
-        rowsMax           = {15}
-        fullWidth         = {true}
-        label             = {'hehe'}
-        valueLink         = {linkState(this, 'content')}
-      />
+      <Paper style={style.contentArea} zDepth={1}>
+        <TextField
+          floatingLabelText = "Snippet Content"
+          multiLine         = {true}
+          rows              = {15}
+          rowsMax           = {15}
+          fullWidth         = {true}
+          label             = {'hehe'}
+          valueLink         = {linkState(this, 'content')}
+          onBlur            = {this.updateCurrentSnippet}
+        />
+      </Paper>
     );
 
     return selectedId ? (
       <Grid fluid style={style.global}>
         <Row>
 
+          <div contentEditable="true">
+            This text can be edited by the user.
+          </div>
           <Col xs={6}>
             <TextField
               hintText          = "Title"
               valueLink         = {linkState(this, 'title')}
               floatingLabelText = "Enter Title"
+              onBlur            = {this.updateCurrentSnippet}
             />
           </Col>
 

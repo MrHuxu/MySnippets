@@ -35,7 +35,7 @@ class SnippetItem extends Component {
           avatar   = {`/lang-icons/${metaData.lang}.svg`}
         />
         <CardText>
-          {metaData.content.slice(0, 100)}
+          {metaData.content && metaData.content.slice(0, 100)}
         </CardText>
         <CardActions>
           <FlatButton label="Delete" primary={true} onClick={this.handleClickDeleteButton.bind(null, metaData._id)} />
