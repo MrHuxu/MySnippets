@@ -17,13 +17,10 @@ export function deleteSnippet (id) {
 }
 
 export const REFRESH_SNIPPET = 'REFRESH_SNIPPET';
-export function refreshSnippet (id, update) {
+export function refreshSnippet (fetchResult) {
   return {
     type    : REFRESH_SNIPPET,
-    content : {
-      id     : id,
-      update : update
-    }
+    content : fetchResult
   };
 }
 
@@ -35,18 +32,38 @@ export function selectSnippet (id) {
   };
 }
 
+export function fetchSnippets () {
+  return function (dispatch) {
+    db.find({}).sort({ time: -1 }).exec((err, docs) => {
+      var fetchResult = {
+        ids        : [],
+        entities   : {},
+        selectedId : null
+      };
+
+      docs.forEach((doc) => {
+        fetchResult.ids.push(doc._id);
+        fetchResult.entities[doc._id] = doc;
+      });
+
+      fetchResult.selectedId = fetchResult.ids[0];
+
+      dispatch(refreshSnippet(fetchResult));
+    });
+  }
+}
+
 export function createSnippet () {
   var doc = {
     title   : 'Untitled',
-    time    : (new Date()).toLocaleString(),
+    time    : new Date(),
     content : "",
     lang    : 'javascript'
   };
 
   return function (dispatch) {
     db.insert(doc, (err, doc) => {
-      dispatch(addSnippet(doc));
-      dispatch(selectSnippet(doc._id));
+      dispatch(fetchSnippets());
     });
   };
 }
@@ -54,7 +71,7 @@ export function createSnippet () {
 export function updateSnippet (query, update) {
   return function (dispatch) {
     db.update(query, update, { multi: true }, function (err, numReplaced) {
-      dispatch(refreshSnippet(query._id, update));
+      dispatch(fetchSnippets());
     });
   };
 }
@@ -62,7 +79,8 @@ export function updateSnippet (query, update) {
 export function destroySnippet (id) {
   return function (dispatch) {
     db.remove({ _id: id }, {}, function (err, numRemoved) {
-      dispatch(deleteSnippet(id));
+      //dispatch(deleteSnippet(id));
+      dispatch(fetchSnippets());
     });
   };
 }

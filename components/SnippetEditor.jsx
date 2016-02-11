@@ -70,7 +70,7 @@ class SnippetEditor extends Component {
       dispatch(updateSnippet({
         _id: this.props.selectedId,
       }, Object.assign(this.state, {
-        time: (new Date()).toLocaleString()
+        time: new Date()
       })));
     }
   }

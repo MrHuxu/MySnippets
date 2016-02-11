@@ -11,7 +11,7 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 import SnippetItem from './SnippetItem';
-import { selectSnippet } from '../actions/SnippetActions';
+import { selectSnippet, fetchSnippets } from '../actions/SnippetActions';
 
 class SnippetList extends List {
   constructor (props, context) {
@@ -35,6 +35,10 @@ class SnippetList extends List {
     dispatch(selectSnippet(records[index]._id));
   }
 
+  componentDidMount () {
+    this.props.dispatch(fetchSnippets());
+  }
+
   render () {
     const { records } = this.props;
     const items = records.map((record, index) => <ListItem value={index} key={record._id}><SnippetItem metaData={record} /></ListItem>);
@@ -53,10 +57,6 @@ class SnippetList extends List {
     );
   }
 }
-
-SnippetList.contextTypes = {
-  muiTheme: React.PropTypes.object
-};
 
 var mapStateToProps = function (state) {
   return {

@@ -39,8 +39,7 @@ export function snippet (state = {
       });
 
     case REFRESH_SNIPPET:
-      copy.entities[action.content.id] = action.content.update;
-      return copy;
+      return Object.assign(copy, action.content);
 
     case SELECT_SNIPPET:
       copy.selectedId = action.content;
