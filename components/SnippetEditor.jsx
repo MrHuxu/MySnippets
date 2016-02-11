@@ -1,6 +1,8 @@
+import $ from 'jquery';
 import React, { Component } from 'react';
 import linkState from 'react-link-state';
 import { connect } from 'react-redux';
+import hljs from 'highlight.js';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
@@ -82,28 +84,11 @@ class SnippetEditor extends Component {
   render () {
     const { selectedId, snippet } = this.props;
     const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={key} primaryText={langs[key]}/>)
-    const editArea = (
-      <Paper style={style.contentArea} zDepth={1}>
-        <TextField
-          floatingLabelText = "Snippet Content"
-          multiLine         = {true}
-          rows              = {15}
-          rowsMax           = {15}
-          fullWidth         = {true}
-          label             = {'hehe'}
-          valueLink         = {linkState(this, 'content')}
-          onBlur            = {this.updateCurrentSnippet}
-        />
-      </Paper>
-    );
 
     return selectedId ? (
       <Grid fluid style={style.global}>
         <Row>
 
-          <div contentEditable="true">
-            This text can be edited by the user.
-          </div>
           <Col xs={6}>
             <TextField
               hintText          = "Title"
@@ -124,7 +109,16 @@ class SnippetEditor extends Component {
           </Col>
 
           <Col xs={12}>
-            {editArea}
+            <TextField
+              floatingLabelText = "Snippet Content"
+              multiLine         = {true}
+              rows              = {15}
+              rowsMax           = {15}
+              fullWidth         = {true}
+              label             = {'hehe'}
+              valueLink         = {linkState(this, 'content')}
+              onBlur            = {this.updateCurrentSnippet}
+            />
           </Col>
 
         </Row>
