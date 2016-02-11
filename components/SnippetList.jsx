@@ -30,9 +30,15 @@ class SnippetList extends List {
     const { dispatch, records } = this.props;
 
     this.setState({
-      selectedIndex: index,
+      selectedIndex: index
     });
     dispatch(selectSnippet(records[index]._id));
+  }
+
+  componentWillReceiveProps () {
+    this.setState({
+      selectedIndex: 0
+    });
   }
 
   componentDidMount () {
@@ -47,8 +53,8 @@ class SnippetList extends List {
       <div>
         <SelectableList
           valueLink={{
-            value: this.state.selectedIndex,
-            requestChange: this.handleUpdateSelectedIndex
+            value         : this.state.selectedIndex,
+            requestChange : this.handleUpdateSelectedIndex
           }}
         >
           {items}
