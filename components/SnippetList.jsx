@@ -16,33 +16,18 @@ import { selectSnippet, fetchSnippets } from '../actions/SnippetActions';
 class SnippetList extends List {
   constructor (props, context) {
     super(props, context);
-    this.state = {
-      selectedIndex: 0
-    };
-
-    const { dispatch, records } = this.props;
-    if (records.length) dispatch(selectSnippet(records[0]._id));
 
     this.handleUpdateSelectedIndex = this.handleUpdateSelectedIndex.bind(this);
   }
 
   handleUpdateSelectedIndex (e, index) {
-    const { dispatch, records } = this.props;
+    const { dispatch, ids } = this.props;
 
-    this.setState({
-      selectedIndex: index
-    });
-    dispatch(selectSnippet(records[index]._id));
-  }
-
-  componentWillReceiveProps () {
-    this.setState({
-      selectedIndex: 0
-    });
+    dispatch(selectSnippet(ids[index]));
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchSnippets());
+    this.props.dispatch(fetchSnippets({}));
   }
 
   render () {
@@ -53,7 +38,7 @@ class SnippetList extends List {
       <div>
         <SelectableList
           valueLink={{
-            value         : this.state.selectedIndex,
+            value         : this.props.selectedIndex,
             requestChange : this.handleUpdateSelectedIndex
           }}
         >
@@ -66,7 +51,9 @@ class SnippetList extends List {
 
 var mapStateToProps = function (state) {
   return {
-    records: state.snippet.ids.map(id => state.snippet.entities[id])
+    ids           : state.snippet.ids,
+    selectedIndex : state.snippet.ids.indexOf(state.snippet.selectedId),
+    records       : state.snippet.ids.map(id => state.snippet.entities[id])
   };
 };
 

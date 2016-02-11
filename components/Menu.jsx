@@ -15,7 +15,7 @@ class Menu extends Component {
   constructor (props, context) {
     super(props, context);
     this.state = {
-      condition: null
+      condition: ''
     };
 
     this.handleClickAddButton = this.handleClickAddButton.bind(this);
