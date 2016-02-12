@@ -78,7 +78,6 @@ class SnippetEditor extends Component {
   componentWillReceiveProps (props) {
     const { dispatch, selectedId, snippet } = props;
     if (snippet) this.setState(snippet);
-    this.updateCurrentSnippet();
   }
 
   render () {

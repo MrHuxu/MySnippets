@@ -27,7 +27,7 @@ class SnippetList extends List {
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchSnippets({}));
+    this.props.dispatch(fetchSnippets({}, { updateSelectedId: true }));
   }
 
   render () {

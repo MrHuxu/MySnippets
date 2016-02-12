@@ -32,13 +32,12 @@ export function selectSnippet (id) {
   };
 }
 
-export function fetchSnippets (query) {
+export function fetchSnippets (query, option) {
   return function (dispatch) {
     db.find(query).sort({ time: -1 }).exec((err, docs) => {
       var fetchResult = {
         ids        : [],
-        entities   : {},
-        selectedId : null
+        entities   : {}
       };
 
       docs.forEach((doc) => {
@@ -46,7 +45,7 @@ export function fetchSnippets (query) {
         fetchResult.entities[doc._id] = doc;
       });
 
-      fetchResult.selectedId = fetchResult.ids[0];
+      if (option.updateSelectedId) fetchResult.selectedId = fetchResult.ids[0];
 
       dispatch(refreshSnippet(fetchResult));
     });
@@ -63,7 +62,7 @@ export function createSnippet () {
 
   return function (dispatch) {
     db.insert(doc, (err, doc) => {
-      dispatch(fetchSnippets({}));
+      dispatch(fetchSnippets({}, { updateSelectedId: true }));
     });
   };
 }
@@ -71,7 +70,7 @@ export function createSnippet () {
 export function updateSnippet (query, update) {
   return function (dispatch) {
     db.update(query, update, { multi: true }, function (err, numReplaced) {
-      dispatch(fetchSnippets({}));
+      dispatch(fetchSnippets({}, { updateSelectedId: false }));
     });
   };
 }
@@ -80,7 +79,7 @@ export function destroySnippet (id) {
   return function (dispatch) {
     db.remove({ _id: id }, {}, function (err, numRemoved) {
       //dispatch(deleteSnippet(id));
-      dispatch(fetchSnippets({}));
+      dispatch(fetchSnippets({}, { updateSelectedId: true }));
     });
   };
 }
