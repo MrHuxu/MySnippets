@@ -7,6 +7,15 @@ import FlatButton from 'material-ui/lib/flat-button';
 import CardText from 'material-ui/lib/card/card-text';
 import { destroySnippet } from '../actions/SnippetActions';
 
+const langIcons = {
+  css        : require('../vendor/lang-icons/css.svg'),
+  javascript : require('../vendor/lang-icons/javascript.svg'),
+  markdown   : require('../vendor/lang-icons/markdown.svg'),
+  ruby       : require('../vendor/lang-icons/ruby.svg'),
+  sql        : require('../vendor/lang-icons/sql.svg'),
+  xml        : require('../vendor/lang-icons/xml.svg')
+};
+
 class SnippetItem extends Component {
   constructor (props) {
     super(props);
@@ -32,7 +41,7 @@ class SnippetItem extends Component {
         <CardHeader
           title    = {metaData.title}
           subtitle = {`@ ${metaData.time.toLocaleString()}`}
-          avatar   = {`/lang-icons/${metaData.lang}.svg`}
+          avatar   = {langIcons[metaData.lang]}
         />
         <CardText>
           {metaData.content && metaData.content.slice(0, 100)}

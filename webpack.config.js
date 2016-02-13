@@ -7,14 +7,13 @@ module.exports = {
   context: __dirname,                                   // input path
   devtool: 'inline-source-map',
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:6789', // WebpackDevServer host and port
-    'webpack/hot/dev-server', // "only" prevents reload on syntax errors
+    'webpack-hot-middleware/client?path=http://localhost:15106/__webpack_hmr',
     './index' // Your appʼs entry point
   ],
   output: {
     path: path.join(__dirname, 'vendor', 'built'),
     filename: 'bundle.js',
-    publicPath: 'http://localhost:6789/assets/'
+    publicPath: 'http://localhost:15106/assets/'
   },
   resolve: {
     extensions: ['', '.jsx', '.scss', '.js', '.json'],  // along the way, subsequent file(s) to be consumed by webpack
@@ -28,7 +27,6 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        //loader: 'react-hot!babel-loader',
         loader: 'babel-loader',
         query: {
           cacheDirectory: true,
@@ -40,6 +38,9 @@ module.exports = {
       }, {
         test: /(\.scss|\.sass)$/,
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap')
+      }, {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'file-loader'
       }
     ]
   },

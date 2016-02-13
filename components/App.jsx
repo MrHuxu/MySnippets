@@ -7,8 +7,15 @@ import { Grid, Row, Col } from 'react-flexbox-grid/lib';
 import { connect } from 'react-redux';
 
 const style = {
+  snippetList: {
+    overflowY: 'auto',
+    paddingBottom: '70px'
+  },
+
   snippetEditor: {
-    borderLeft: '2px solid #ddd'
+    borderLeft: '2px solid #ddd',
+    overflowY: 'auto',
+    paddingBottom: '70px'
   }
 };
 
@@ -29,15 +36,18 @@ class App extends Component {
             <Col
               xs        = {4}
               className ='full-height'
-              style     = {{
-                overflowY: 'auto',
-                paddingBottom: '70px'
-              }}
+              style     = {style.snippetList}
             >
               <SnippetList />
             </Col>
 
-            <Col className='snippet-editor' xs={8} style={style.snippetEditor}><SnippetEditor /></Col>
+            <Col
+              className = 'snippet-editor'
+              xs        = {8}
+              style     = {style.snippetEditor}
+            >
+              <SnippetEditor />
+            </Col>
           </Row>
         </Grid>
         <Snackbar

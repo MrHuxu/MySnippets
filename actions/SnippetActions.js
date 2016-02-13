@@ -1,13 +1,5 @@
 import db from '../database/nedb.config';
 
-export const ADD_SNIPPET = 'ADD_SNIPPET';
-export function addSnippet (doc) {
-  return {
-    type    : ADD_SNIPPET,
-    content : doc
-  };
-}
-
 export const DELETE_SNIPPET = 'DELETE_SNIPPET';
 export function deleteSnippet (id) {
   return {
@@ -78,8 +70,8 @@ export function updateSnippet (query, update) {
 export function destroySnippet (id) {
   return function (dispatch) {
     db.remove({ _id: id }, {}, function (err, numRemoved) {
-      //dispatch(deleteSnippet(id));
       dispatch(fetchSnippets({}, { updateSelectedId: true }));
+      dispatch(deleteSnippet(id));
     });
   };
 }
