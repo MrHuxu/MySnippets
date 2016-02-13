@@ -34,7 +34,18 @@ class SnippetItem extends Component {
   }
 
   render () {
-    const { metaData } = this.props;
+    const { metaData, expand } = this.props;
+
+    const snippetDetail = (
+      <CardText>
+        {metaData.content && metaData.content.slice(0, 100)}
+      </CardText>
+    );
+    const snippetAction = (
+      <CardActions>
+        <FlatButton label="Delete" primary={true} onClick={this.handleClickDeleteButton.bind(null, metaData._id)} />
+      </CardActions>
+    )
 
     return (
       <Card>
@@ -43,12 +54,8 @@ class SnippetItem extends Component {
           subtitle = {`@ ${metaData.time.toLocaleString()}`}
           avatar   = {langIcons[metaData.lang]}
         />
-        <CardText>
-          {metaData.content && metaData.content.slice(0, 100)}
-        </CardText>
-        <CardActions>
-          <FlatButton label="Delete" primary={true} onClick={this.handleClickDeleteButton.bind(null, metaData._id)} />
-        </CardActions>
+        {expand ? snippetDetail : null}
+        {expand ? snippetAction : null}
       </Card>
     );
   }
