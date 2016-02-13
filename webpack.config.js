@@ -12,8 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'vendor', 'built'),
-    filename: 'bundle.js',
-    publicPath: 'http://localhost:15106/assets/'
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['', '.jsx', '.scss', '.js', '.json'],  // along the way, subsequent file(s) to be consumed by webpack
@@ -48,9 +47,6 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('bundle.css', { allChunks: true }),  // compiled css (single file only)
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+    new webpack.NoErrorsPlugin()
   ]
 };

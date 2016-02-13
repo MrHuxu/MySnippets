@@ -17,9 +17,9 @@ app.on('ready', function () {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 700,
-    icon: ('file://' + __dirname + '/vendor/icon/icon.png')
+    icon: ('file://' + __dirname + '/vendor/icon/icon.icns')
   });
-  mainWindow.loadUrl('file://' + __dirname + '/views/index-dev.html');
+  mainWindow.loadURL('file://' + __dirname + '/views/index.html');
   mainWindow.openDevTools();
   mainWindow.on('closed', function () {
     mainWindow = null;

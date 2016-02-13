@@ -36,12 +36,14 @@ class SnippetItem extends Component {
   render () {
     const { metaData } = this.props;
 
+    const iconPath = ((process.env.NODE_ENV && process.env.NODE_ENV === 'development') ? '' : '../vendor/built/') + langIcons[metaData.lang];
+
     return (
       <Card>
         <CardHeader
           title    = {metaData.title}
           subtitle = {`@ ${metaData.time.toLocaleString()}`}
-          avatar   = {langIcons[metaData.lang]}
+          avatar   = {iconPath}
         />
         <CardText>
           {metaData.content && metaData.content.slice(0, 100)}

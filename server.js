@@ -3,6 +3,13 @@ const express = require('express');
 const webpack = require('webpack');
 const config = require('./webpack.config');
 
+config.output.publicPath = 'http://localhost:15106/assets/';
+config.plugins.push(
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('development')
+  })
+);
+
 const app = express();
 const compiler = webpack(config);
 
@@ -11,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'vendor')));
 
 app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath,
+  publicPath: 'http://localhost:15106/assets/',
   stats: {
     colors: true
   }
