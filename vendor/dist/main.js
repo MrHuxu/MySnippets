@@ -1,5 +1,3 @@
-require('babel-core/register');
-
 var app = require('app');
 var BrowserWindow = require('browser-window');
 
@@ -19,7 +17,7 @@ app.on('ready', function () {
     height: 700
   });
   mainWindow.loadURL('file://' + __dirname + '/index.html');
-  mainWindow.openDevTools();
+  // mainWindow.openDevTools();
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
