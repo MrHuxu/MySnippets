@@ -28,7 +28,7 @@ class Menu extends Component {
   shouldComponentUpdate (props, state) {
     props.dispatch(fetchSnippets({
       title: new RegExp(state.condition, 'i')
-    }));
+    }, { updateSelectedId: true }));
     return true;
   }
 

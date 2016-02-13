@@ -96,7 +96,6 @@ class SnippetEditor extends Component {
       tabSize         : 2,
       lineNumbers     : true,
       lineWiseCopyCut : true,
-      autofocus       : true,
       mode            : this.state.lang
     };
 
@@ -124,7 +123,11 @@ class SnippetEditor extends Component {
           </Col>
 
           <Col xs={12} style={{marginTop: '30px'}}>
-            <CodeMirror value={this.state.content} onChange={this.updateCode} options={codeMirrorOptions} />
+            <CodeMirror
+              value    = {this.state.content}
+              onChange = {this.updateCode}
+              options  = {codeMirrorOptions}
+            />
           </Col>
 
         </Row>

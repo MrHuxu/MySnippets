@@ -7,6 +7,12 @@ body {
   overflow-y: hidden;
 }
 
+.CodeMirror {
+  background-color: #fffefa;
+  border: 1px solid #eee;
+  height: 400px;
+}
+
 .CodeMirror-code * {
   font-family: 'source-code-pro', Menlo, Consolas, 'Courier New', monospace;
   font-size: 0.95em;
