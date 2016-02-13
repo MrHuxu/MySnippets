@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import linkState from 'react-link-state';
 import { connect } from 'react-redux';
-import hljs from 'highlight.js';
+import CodeMirror from 'react-codemirror';
 import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
@@ -38,6 +38,7 @@ class SnippetEditor extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.updateCode = this.updateCode.bind(this);
     this.checkSnippetChanged = this.checkSnippetChanged.bind(this);
     this.updateCurrentSnippet = this.updateCurrentSnippet.bind(this);
   }
@@ -62,6 +63,11 @@ class SnippetEditor extends Component {
     }
   }
 
+  updateCode (newContent) {
+    this.state.content = newContent;
+    this.updateCurrentSnippet();
+  }
+
   updateCurrentSnippet () {
     if (this.checkSnippetChanged()) {
       const { dispatch } = this.props;
@@ -83,7 +89,9 @@ class SnippetEditor extends Component {
     const { selectedId, snippet } = this.props;
     const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>)
 
-    const html = hljs.highlight(this.state.lang || 'javascript', this.state.content || '').value;
+    const options = {
+      lineNumbers: true
+    };
 
     return selectedId ? (
       <Grid fluid style={style.global}>
@@ -108,21 +116,8 @@ class SnippetEditor extends Component {
             </SelectField>
           </Col>
 
-          <Col xs={6}>
-            <TextField
-              floatingLabelText = "Snippet Content"
-              multiLine         = {true}
-              rows              = {15}
-              rowsMax           = {15}
-              fullWidth         = {true}
-              label             = {'hehe'}
-              valueLink         = {linkState(this, 'content')}
-              onBlur            = {this.updateCurrentSnippet}
-            />
-          </Col>
-
-          <Col xs={6}>
-            <div dangerouslySetInnerHTML={{ __html: html }} style={{marginTop: '50px'}} />
+          <Col xs={12} style={{marginTop: '30px'}}>
+            <CodeMirror value={this.state.content} onChange={this.updateCode} options={options} />
           </Col>
 
         </Row>

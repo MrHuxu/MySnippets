@@ -1,5 +1,6 @@
 import './node_modules/animate.css/animate.min.css';
-import './node_modules/highlight.js/styles/solarized-dark.css';
+import './node_modules/codemirror/lib/codemirror.css';
+import './node_modules/codemirror/theme/solarized.css';
 
 import './stylesheets/common.css';
 
