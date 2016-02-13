@@ -4,11 +4,6 @@ const webpack = require('webpack');
 const config = require('./webpack.config');
 
 config.output.publicPath = 'http://localhost:15106/assets/';
-config.plugins.push(
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('development')
-  })
-);
 
 const app = express();
 const compiler = webpack(config);
@@ -27,7 +22,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index-dev.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const port = 15106;

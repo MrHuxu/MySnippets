@@ -1,2 +1,4 @@
 node_modules/
-vendor/built
+vendor/dist/*.svg
+vendor/dist/bundle.js
+vendor/dist/bundle.css

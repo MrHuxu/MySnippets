@@ -11,7 +11,7 @@ module.exports = {
     './index' // Your appʼs entry point
   ],
   output: {
-    path: path.join(__dirname, 'vendor', 'built'),
+    path: path.join(__dirname, 'vendor', 'dist'),
     filename: 'bundle.js'
   },
   resolve: {

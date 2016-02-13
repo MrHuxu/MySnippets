@@ -2,14 +2,14 @@
   "name": "my-snippets",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "./vendor/dist/main.js",
   "scripts": {
     "start": "/Applications/Electron.app/Contents/MacOS/Electron .",
     "watch": "./node_modules/.bin/webpack-dev-server --port 6789",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "animate.css": "^3.5.1",
     "autoprefixer": "^6.3.2",
