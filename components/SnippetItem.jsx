@@ -81,11 +81,11 @@ class SnippetItem extends Component {
           {expand ? snippetAction : null}
         </Card>
         <Dialog
-          title   = "Dialog With Actions"
+          title   = "Delete Confirmation"
           open    = {this.state.openDialog}
           actions = {dialogActions}
         >
-          The actions in this window were passed in as an array of React objects.
+          Are you sure to delete '{metaData.title}'?
         </Dialog>
       </div>
     );
