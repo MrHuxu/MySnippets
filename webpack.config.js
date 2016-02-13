@@ -28,7 +28,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'react-hot!babel-loader'
+        //loader: 'react-hot!babel-loader',
+        loader: 'babel-loader',
+        query: {
+          cacheDirectory: true,
+          presets: ['es2015', 'react']
+        }
       }, {
         test: /\.css$/,
         loader: 'style-loader!css-loader'

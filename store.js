@@ -7,5 +7,5 @@ const rootReducer = combineReducers({
 });
 
 export const rootStore = compose(
-  applyMiddleware(thunkMiddleware),
+  applyMiddleware(thunkMiddleware)
 )(createStore)(rootReducer);

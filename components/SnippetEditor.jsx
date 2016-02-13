@@ -21,12 +21,11 @@ const style = {
 };
 
 const langs = {
-  javascript : 'Javascript',    
-  ruby       : 'Ruby',   
-  css        : 'CSS',   
-  html       : 'HTML',    
-  mysql      : 'SQL',   
-  markdown   : 'Markdown'
+  JavaScript : 'javascript',
+  Ruby       : 'ruby',
+  CSS        : 'css',
+  XML        : 'xml',
+  SQL        : 'sql'
 };
 
 class SnippetEditor extends Component {
@@ -82,7 +81,9 @@ class SnippetEditor extends Component {
 
   render () {
     const { selectedId, snippet } = this.props;
-    const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={key} primaryText={langs[key]}/>)
+    const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>)
+
+    const html = hljs.highlight(this.state.lang || 'javascript', this.state.content || '').value;
 
     return selectedId ? (
       <Grid fluid style={style.global}>
@@ -107,7 +108,7 @@ class SnippetEditor extends Component {
             </SelectField>
           </Col>
 
-          <Col xs={12}>
+          <Col xs={6}>
             <TextField
               floatingLabelText = "Snippet Content"
               multiLine         = {true}
@@ -118,6 +119,10 @@ class SnippetEditor extends Component {
               valueLink         = {linkState(this, 'content')}
               onBlur            = {this.updateCurrentSnippet}
             />
+          </Col>
+
+          <Col xs={6}>
+            <div dangerouslySetInnerHTML={{ __html: html }} style={{marginTop: '50px'}} />
           </Col>
 
         </Row>
