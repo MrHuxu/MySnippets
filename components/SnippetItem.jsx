@@ -63,7 +63,7 @@ class SnippetItem extends Component {
         onTouchTap      = {this.handleCloseDialog.bind(null, metaData._id, false)}
       />,
       <FlatButton
-        label      = "Submit"
+        label      = "Delete"
         primary    = {true}
         onTouchTap = {this.handleCloseDialog.bind(null, metaData._id, true)}
       />,
