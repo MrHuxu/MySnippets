@@ -6,3 +6,9 @@ body {
   margin: 0;
   overflow-y: hidden;
 }
+
+.CodeMirror-code * {
+  font-family: 'source-code-pro', Menlo, Consolas, 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.2;
+}

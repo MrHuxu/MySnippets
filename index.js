@@ -6,6 +6,12 @@ import './stylesheets/common.css';
 
 import $ from 'jquery';
 window.jQuery = $; // Assure it's available globally.
+require('./node_modules/codemirror/mode/javascript/javascript');
+require('./node_modules/codemirror/mode/ruby/ruby');
+require('./node_modules/codemirror/mode/css/css');
+require('./node_modules/codemirror/mode/xml/xml');
+require('./node_modules/codemirror/mode/sql/sql');
+require('./node_modules/codemirror/mode/markdown/markdown');
 
 import React, { Component } from 'react';
 import reactDom from 'react-dom';

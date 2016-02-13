@@ -25,7 +25,8 @@ const langs = {
   Ruby       : 'ruby',
   CSS        : 'css',
   XML        : 'xml',
-  SQL        : 'sql'
+  SQL        : 'sql',
+  Markdown   : 'markdown'
 };
 
 class SnippetEditor extends Component {
@@ -89,8 +90,14 @@ class SnippetEditor extends Component {
     const { selectedId, snippet } = this.props;
     const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>)
 
-    const options = {
-      lineNumbers: true
+    const codeMirrorOptions = {
+      theme           : 'solarized',
+      indentUnit      : 2,
+      tabSize         : 2,
+      lineNumbers     : true,
+      lineWiseCopyCut : true,
+      autofocus       : true,
+      mode            : this.state.lang
     };
 
     return selectedId ? (
@@ -117,7 +124,7 @@ class SnippetEditor extends Component {
           </Col>
 
           <Col xs={12} style={{marginTop: '30px'}}>
-            <CodeMirror value={this.state.content} onChange={this.updateCode} options={options} />
+            <CodeMirror value={this.state.content} onChange={this.updateCode} options={codeMirrorOptions} />
           </Col>
 
         </Row>
