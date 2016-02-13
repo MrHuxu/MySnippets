@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Snippets</title>
+    <link rel="shortcut icon" type="image" href="/icon/icon.png">
+    <% if ('development' === process.env.NODE_ENV) { %>
+      <link rel="stylesheet" type="text/css" href="http://localhost:15106/assets/bundle.css">
+    <% } else { %>
+      <link rel="stylesheet" type="text/css" href="/dist/bundle.css">
+    <% } %>
+  </head>
+
+  <body>
+    <div class="full-height" id="my-snippets"></div>
+  </body>
+
+  <% if ('development' === process.env.NODE_ENV) { %>
+    <script src='http://localhost:15106/assets/bundle.js'></script>
+  <% } else { %>
+    <script src='/dist/bundle.js'></script>
+  <% } %>
+</html>

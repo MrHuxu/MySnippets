@@ -12,6 +12,8 @@ require('./node_modules/codemirror/mode/css/css');
 require('./node_modules/codemirror/mode/xml/xml');
 require('./node_modules/codemirror/mode/sql/sql');
 require('./node_modules/codemirror/mode/markdown/markdown');
+require('./node_modules/codemirror/mode/shell/shell');
+require('./node_modules/codemirror/mode/haml/haml');
 
 import React, { Component } from 'react';
 import reactDom from 'react-dom';

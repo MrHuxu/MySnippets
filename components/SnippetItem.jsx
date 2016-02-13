@@ -14,7 +14,8 @@ const langIcons = {
   markdown   : require('../vendor/lang-icons/markdown.svg'),
   ruby       : require('../vendor/lang-icons/ruby.svg'),
   sql        : require('../vendor/lang-icons/sql.svg'),
-  xml        : require('../vendor/lang-icons/xml.svg')
+  xml        : require('../vendor/lang-icons/xml.svg'),
+  shell      : require('../vendor/lang-icons/shell.svg')
 };
 
 class SnippetItem extends Component {

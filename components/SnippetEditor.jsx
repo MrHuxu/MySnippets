@@ -24,6 +24,7 @@ const langs = {
   JavaScript : 'javascript',
   Ruby       : 'ruby',
   CSS        : 'css',
+  Shell      : 'shell',
   XML        : 'xml',
   SQL        : 'sql',
   Markdown   : 'markdown'

@@ -29,4 +29,6 @@ gulp.task("webpack-dev-server", function(callback) {
 
 gulp.task('dev', shell.task('NODE_ENV=development node server --harmony'));
 
-gulp.task('prd', ['webpack'], shell.task('NODE_ENV=production /Applications/Electron.app/Contents/MacOS/Electron .'));
+gulp.task('prd', ['webpack'], shell.task('NODE_ENV=production forever start server.js --harmony'));
+
+gulp.task('prd-ele', ['webpack'], shell.task('NODE_ENV=production /Applications/Electron.app/Contents/MacOS/Electron .'));
