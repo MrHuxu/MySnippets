@@ -11,12 +11,12 @@ Provide web&desktop apps to save my little snippets while coding.
 Sincerely thanks for these frameworks or libraries.
 
 1. [React](https://github.com/facebook/react), build component system of this project to make development comfortable.
-2. [Redux](https://github.com/reactjs/redux), data store and stream controller of this app.
+2. [Redux](https://github.com/reactjs/redux), state machine and data stream controller of this app.
 3. [Electron](https://github.com/atom/electron), build cross platform desktop app.
-4. [NeDB](https://github.com/louischatriot/nedb), for data persistance and based on Chrome IndexedDB.
-5. [Material-UI](https://github.com/callemall/material-ui) & [React-Flexbox-Grid](https://github.com/roylee0704/react-flexbox-grid), the frontend UI system library.
+4. [NeDB](https://github.com/louischatriot/nedb), based on Chrome IndexedDB, for data persistance.
+5. [Material-UI](https://github.com/callemall/material-ui) & [React-Flexbox-Grid](https://github.com/roylee0704/react-flexbox-grid), the frontend UI library.
 6. [CodeMirror](https://github.com/codemirror/CodeMirror), awesome & easily integrated code editor written in pure JavaScript.
-7. [Webpack](https://github.com/webpack/webpack), compile js & css & other assets.
+7. [Webpack](https://github.com/webpack/webpack), compile and compress js & css & other assets.
 8. [NodeJS](https://github.com/nodejs/node), the basic of this project.
 
 ## Usage
