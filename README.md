@@ -40,3 +40,8 @@ At first, clone this project and install all the dependencies.
     Use gulp to compile asset files and run Electron app.
 
         gulp prd-ele
+
+## To Do
+
+- [ ] export/import .json file
+- [ ] cloud sync through GitHub
