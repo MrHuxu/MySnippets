@@ -6,7 +6,7 @@
   "scripts": {
     "start": "/Applications/Electron.app/Contents/MacOS/Electron .",
     "watch": "./node_modules/.bin/webpack-dev-server --port 6789",
-    "test": "mocha --require babel-register"
+    "test": "mocha --compilers js:babel-register"
   },
   "author": "",
   "license": "MIT",

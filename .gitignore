@@ -2,3 +2,4 @@ node_modules/
 vendor/dist/*.svg
 vendor/dist/bundle.js
 vendor/dist/bundle.css
+snippets.db
