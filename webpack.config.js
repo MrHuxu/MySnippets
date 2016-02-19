@@ -4,15 +4,16 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  context: __dirname,                                   // input path
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   entry: [
-    'webpack-hot-middleware/client?path=http://localhost:15106/__webpack_hmr',
-    './index' // Your appʼs entry point
+    'webpack-dev-server/client?http://localhost:15106',
+    'webpack/hot/only-dev-server',
+    './index'
   ],
   output: {
     path: path.join(__dirname, 'vendor', 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/assets/'
   },
   resolve: {
     extensions: ['', '.jsx', '.scss', '.js', '.json'],  // along the way, subsequent file(s) to be consumed by webpack

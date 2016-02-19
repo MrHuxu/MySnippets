@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "./vendor/dist/main.js",
+  "repository": "https://github.com/MrHuxu/MySnippets",
   "scripts": {
     "start": "/Applications/Electron.app/Contents/MacOS/Electron .",
     "watch": "./node_modules/.bin/webpack-dev-server --port 6789",
@@ -32,6 +33,7 @@
     "highlight.js": "^9.1.0",
     "jquery": "^2.2.0",
     "material-ui": "^0.14.4",
+    "materialize-css": "^0.97.5",
     "nedb": "^1.7.4",
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.8.0",
@@ -51,6 +53,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
+    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.7.1"
   },
   "devDependencies": {
