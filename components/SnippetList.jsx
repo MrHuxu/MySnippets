@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import List from 'material-ui/lib/lists/list';
-import FlatButton from 'material-ui/lib/flat-button';
-import ListIcon from 'material-ui/lib/svg-icons/action/list';
-import ViewListIcon from 'material-ui/lib/svg-icons/action/view-list';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-const SelectableList = SelectableContainerEnhance(List);
-import ListItem from 'material-ui/lib/lists/list-item';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
-import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
-import ContentSend from 'material-ui/lib/svg-icons/content/send';
-import Divider from 'material-ui/lib/divider';
 import SnippetItem from './SnippetItem';
 import { selectSnippet, fetchSnippets } from '../actions/SnippetActions';
 
-class SnippetList extends List {
+class SnippetList extends Component {
   constructor (props, context) {
     super(props, context);
     this.state = {
@@ -48,23 +35,15 @@ class SnippetList extends List {
 
   render () {
     const { records } = this.props;
-    const items = records.map((record, index) => <ListItem value={index} key={record._id}><SnippetItem metaData={record} expand={this.state.showDetail} /></ListItem>);
+    const items = records.map((record, index) => <SnippetItem metaData={record} expand={this.state.showDetail} />);
 
     return (
       <div>
-        <div style={{marginTop: '10px'}}>
-          <FlatButton icon={<ListIcon />} primary={true} onClick={this.collapseCard} />
-          <FlatButton icon={<ViewListIcon />} secondary={true} onClick={this.expantCard} />
-        </div>
-
-        <SelectableList
-          valueLink={{
-            value         : this.props.selectedIndex,
-            requestChange : this.handleUpdateSelectedIndex
-          }}
-        >
+        <a className="waves-effect waves-teal btn-flat"><i className='material-icons'>list</i></a>
+        <a className="waves-effect waves-teal btn-flat"><i className='material-icons'>view_list</i></a>
+        <div className='collection'>
           {items}
-        </SelectableList>
+        </div>
       </div>
     );
   }

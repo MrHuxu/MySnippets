@@ -25,6 +25,7 @@
     "gulp": "^3.9.1",
     "gulp-shell": "^0.5.2",
     "gulp-util": "^3.0.7",
+    "img-loader": "^1.2.2",
     "jquery": "^2.2.0",
     "materialize-css": "^0.97.5",
     "nedb": "^1.8.0",

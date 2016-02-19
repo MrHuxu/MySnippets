@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Snackbar from 'material-ui/lib/snackbar';
 import Menu from './Menu';
 import SnippetList from './SnippetList';
-import SnippetEditor from './SnippetEditor';
-import { Grid, Row, Col } from 'react-flexbox-grid/lib';
+//import SnippetEditor from './SnippetEditor';
 import { connect } from 'react-redux';
 
 const style = {
+  gridContainer: {
+    margin: '10px 15px 0 15px'
+  },
+
   snippetList: {
     overflowY: 'auto',
     paddingBottom: '70px'
@@ -26,36 +28,14 @@ class App extends Component {
     return (
       <div className='full-height'>
         <Menu />
-        <Grid fluid
-          className = 'full-height'
-          style     = {{
-            padding: '0 10px 0 10px'
-          }}
-        >
-          <Row className='full-height'>
-            <Col
-              xs        = {4}
-              className ='full-height'
-              style     = {style.snippetList}
-            >
+        <div className='container' style={style.gridContainer}>
+          <div className='row'>
+            <div className='col s4'>
               <SnippetList />
-            </Col>
-
-            <Col
-              className = 'snippet-editor'
-              xs        = {8}
-              style     = {style.snippetEditor}
-            >
-              <SnippetEditor />
-            </Col>
-          </Row>
-        </Grid>
-        <Snackbar
-          open             = {snack.open}
-          message          = {`"${snack.message}" was deleted.`}
-          autoHideDuration = {4000}
-          onRequestClose   = {null}
-        />
+            </div>
+            <div className='col s8'>This div is 6-columns wide</div>
+          </div>
+        </div>
       </div>
     );
   }

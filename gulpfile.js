@@ -3,7 +3,6 @@ const shell             = require('gulp-shell');
 const gutil             = require('gulp-util');
 const webpack           = require('webpack');
 const webpackConfig     = require('./webpack.config');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 gulp.task("webpack", function(callback) {
   webpack(webpackConfig, function(err, stats) {

@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -27,26 +25,23 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          cacheDirectory: true,
-          presets: ['es2015', 'react']
-        }
+        loaders: ['react-hot', 'babel']
       }, {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
       }, {
-        test: /(\.scss|\.sass)$/,
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap')
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url?prefix=font/&limit=5000"
+      }, {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
       }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader'
+        loader: 'url?limit=10000!img?progressive=true'
       }
     ]
   },
-  postcss: [autoprefixer],
   plugins: [
-    new ExtractTextPlugin('bundle.css', { allChunks: true }),  // compiled css (single file only)
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]

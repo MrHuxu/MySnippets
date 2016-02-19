@@ -6,6 +6,8 @@ import './stylesheets/common.css';
 
 import $ from 'jquery';
 window.jQuery = $; // Assure it's available globally.
+require('./node_modules/materialize-css/dist/css/materialize.min.css');
+require('./node_modules/materialize-css/dist/js/materialize.min.js');
 require('./node_modules/codemirror/mode/javascript/javascript');
 require('./node_modules/codemirror/mode/ruby/ruby');
 require('./node_modules/codemirror/mode/css/css');
@@ -19,9 +21,6 @@ import React, { Component } from 'react';
 import reactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { rootStore } from './store';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-injectTapEventPlugin();
 
 import App from './components/App.jsx';
 

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import linkState from 'react-link-state';
 import { connect } from 'react-redux';
-import AppBar from 'material-ui/lib/app-bar';
-import IconButton from 'material-ui/lib/icon-button';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
-import TextField from 'material-ui/lib/text-field';
 import { createSnippet, fetchSnippets } from '../actions/SnippetActions';
 
 const style = {
@@ -34,12 +30,16 @@ class Menu extends Component {
 
   render () {
     return (
-      <AppBar
-        title = 'My Snippets'
-        iconElementLeft={<IconButton onClick={this.handleClickAddButton}><ContentAdd /></IconButton>}
-        iconElementRight={<TextField hintText='Search' valueLink={linkState(this, 'condition')} />}
-      >
-      </AppBar>
+      <nav>
+        <div className='nav-wrapper'>
+          <a className='left waves-effect waves-teal btn-flat'><i className='material-icons'>add</i></a>
+          <span className='left brand-logo'>My Snippets</span>
+          <div className='right input-field'>
+            <input id='search' type='search' required placeholder='Search...' />
+            <label for='search'></label>
+          </div>
+        </div>
+      </nav>
     );
   }
 }
