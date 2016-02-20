@@ -40,11 +40,44 @@ class SnippetItem extends Component {
     const { metaData, expand } = this.props;
 
     return expand ? (
-      <a href="#!" className='collection-item'>
-        {metaData.title}
-      </a>
+      <div className="card darken-1">
+        <div className="card-content">
+          <div className='row'>
+            <div className='col s2'>icon</div>
+            <div className='col s10'>
+              <p className='blue-grey-text text-darken-2'>{metaData.title}</p>
+              <p className='blue-grey-text text-lighten-2'>{`@ ${metaData.time.toLocaleString()}`}</p>
+            </div>
+          </div>
+          <p className='grey-text text-darken-2'>{metaData.content}</p>
+        </div>
+        <div className="card-action">
+          <a
+            className = "waves-effect waves-red btn-flat"
+          >
+            Delete
+          </a>
+        </div>
+      </div>
     ) : (
-      <h1 className='collection-item'>hehe</h1>
+      <div className="card darken-1">
+        <div className="card-content">
+          <div className='row'>
+            <div className='col s2'>icon</div>
+            <div className='col s7'>
+              <p className='blue-grey-text text-darken-2'>{metaData.title}</p>
+              <p className='blue-grey-text text-lighten-2'>{`@ ${metaData.time.toLocaleString()}`}</p>
+            </div>
+            <div className='col s3'>
+              <a
+                className = "waves-effect waves-red btn-flat"
+              >
+                <i className='material-icons'>delete</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

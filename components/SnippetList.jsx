@@ -53,7 +53,7 @@ class SnippetList extends Component {
           <i className='material-icons'>view_list</i>
         </a>
 
-        <div className='collection'>
+        <div>
           {items}
         </div>
       </div>

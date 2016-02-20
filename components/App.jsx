@@ -5,10 +5,6 @@ import SnippetList from './SnippetList';
 import { connect } from 'react-redux';
 
 const style = {
-  gridContainer: {
-    margin: '10px 15px 0 15px'
-  },
-
   snippetList: {
     overflowY: 'auto',
     paddingBottom: '70px'
@@ -28,13 +24,11 @@ class App extends Component {
     return (
       <div className='full-height'>
         <Menu />
-        <div className='container' style={style.gridContainer}>
-          <div className='row'>
-            <div className='col s4'>
-              <SnippetList />
-            </div>
-            <div className='col s8'>This div is 6-columns wide</div>
+        <div className='row'>
+          <div className='col s4'>
+            <SnippetList />
           </div>
+          <div className='col s8'>This div is 6-columns wide</div>
         </div>
       </div>
     );
