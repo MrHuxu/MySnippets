@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
 import SnippetList from './SnippetList';
-//import SnippetEditor from './SnippetEditor';
+import SnippetEditor from './SnippetEditor';
 import { connect } from 'react-redux';
 
 const style = {
@@ -28,7 +28,9 @@ class App extends Component {
           <div className='col s4'>
             <SnippetList />
           </div>
-          <div className='col s8'>This div is 6-columns wide</div>
+          <div className='col s8'>
+            <SnippetEditor />
+          </div>
         </div>
       </div>
     );

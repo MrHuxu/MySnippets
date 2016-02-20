@@ -3,11 +3,6 @@ import React, { Component } from 'react';
 import linkState from 'react-link-state';
 import { connect } from 'react-redux';
 import CodeMirror from 'react-codemirror';
-import TextField from 'material-ui/lib/text-field';
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Paper from 'material-ui/lib/paper';
-import { Grid, Row, Col } from 'react-flexbox-grid/lib';
 import { updateSnippet } from '../actions/SnippetActions';
 
 const style = {
@@ -87,9 +82,13 @@ class SnippetEditor extends Component {
     if (snippet) this.setState(snippet);
   }
 
+  componentDidUpdate () {
+    $('select').material_select();
+  }
+
   render () {
     const { selectedId, snippet } = this.props;
-    const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>)
+    //const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>)
 
     const codeMirrorOptions = {
       theme           : 'solarized',
@@ -101,38 +100,38 @@ class SnippetEditor extends Component {
     };
 
     return selectedId ? (
-      <Grid fluid style={style.global}>
-        <Row>
+      <div className='row'>
 
-          <Col xs={6}>
-            <TextField
-              hintText          = "Title"
-              valueLink         = {linkState(this, 'title')}
-              floatingLabelText = "Enter Title"
-              onBlur            = {this.updateCurrentSnippet}
+        <div className="input-field col s6">
+          <input
+            id        = "last_name"
+            type      = "text"
+            className = "validate"
+            valueLink = {linkState(this, 'title')}
+            onBlur    = {this.updateCurrentSnippet}
             />
-          </Col>
+          <label htmlFor="last_name">Enter Title</label>
+        </div>
 
-          <Col xs={6}>
-            <SelectField
-              floatingLabelText = "Select Language"
-              value             = {this.state.lang}
-              onChange          = {this.handleChange}
-            >
-              {menuItems}
-            </SelectField>
-          </Col>
+        <div className="input-field col s6">
+          <select>
+            <option value="" disabled>Choose your option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <label>Materialize Select</label>
+        </div>
 
-          <Col xs={12} style={{marginTop: '30px'}}>
-            <CodeMirror
-              value    = {this.state.content}
-              onChange = {this.updateCode}
-              options  = {codeMirrorOptions}
-            />
-          </Col>
+        <div className='col s12' style={{marginTop: '30px'}}>
+          <CodeMirror
+            value    = {this.state.content}
+            onChange = {this.updateCode}
+            options  = {codeMirrorOptions}
+          />
+        </div>
 
-        </Row>
-      </Grid>
+      </div>
     ) : null;
   }
 }

@@ -40,7 +40,7 @@ class SnippetItem extends Component {
     const { metaData, expand } = this.props;
 
     return expand ? (
-      <div className="card darken-1">
+      <div className="card darken-1 waves-effect">
         <div className="card-content">
           <div className='row'>
             <div className='col s2'>icon</div>
@@ -60,7 +60,7 @@ class SnippetItem extends Component {
         </div>
       </div>
     ) : (
-      <div className="card darken-1">
+      <div className="card darken-1 waves-effect">
         <div className="card-content">
           <div className='row'>
             <div className='col s2'>icon</div>
