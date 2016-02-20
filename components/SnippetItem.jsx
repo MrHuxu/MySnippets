@@ -39,10 +39,12 @@ class SnippetItem extends Component {
   render () {
     const { metaData, expand } = this.props;
 
-    return (
+    return expand ? (
       <a href="#!" className='collection-item'>
         {metaData.title}
       </a>
+    ) : (
+      <h1 className='collection-item'>hehe</h1>
     );
   }
 }

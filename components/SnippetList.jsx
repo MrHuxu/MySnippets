@@ -11,16 +11,16 @@ class SnippetList extends Component {
     };
 
     this.handleUpdateSelectedIndex = this.handleUpdateSelectedIndex.bind(this);
-    this.expantCard = this.expantCard.bind(this);
     this.collapseCard = this.collapseCard.bind(this);
-  }
-
-  expantCard () {
-    this.setState({ showDetail: true });
+    this.expandCard = this.expandCard.bind(this);
   }
 
   collapseCard () {
     this.setState({ showDetail: false });
+  }
+
+  expandCard () {
+    this.setState({ showDetail: true });
   }
 
   handleUpdateSelectedIndex (e, index) {
@@ -39,8 +39,20 @@ class SnippetList extends Component {
 
     return (
       <div>
-        <a className="waves-effect waves-teal btn-flat"><i className='material-icons'>list</i></a>
-        <a className="waves-effect waves-teal btn-flat"><i className='material-icons'>view_list</i></a>
+        <a
+          className = "waves-effect waves-teal btn-flat"
+          onClick   = {this.collapseCard}
+        >
+          <i className='material-icons'>list</i>
+        </a>
+
+        <a
+          className = "waves-effect waves-teal btn-flat"
+          onClick   = {this.expandCard}
+        >
+          <i className='material-icons'>view_list</i>
+        </a>
+
         <div className='collection'>
           {items}
         </div>
