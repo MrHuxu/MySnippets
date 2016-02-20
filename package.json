@@ -52,9 +52,7 @@
     "toolbox-loader": "0.0.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
-    "webpack-dev-middleware": "^1.5.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.7.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
