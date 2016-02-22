@@ -25,13 +25,13 @@ At first, clone this project and install all the dependencies.
     
     git clone git@github.com:MrHuxu/MySnippets.git
     cd MySnippets
-    npm install gulp -g && npm install
+    npm install
 
 1. In Browser
 
     Use gulp to start server and open ```http://localhost:15106``` in browser.
 
-        gulp dev
+        npm run dev
 
 2. Independent App (*Currently just for OS X*)
 
@@ -39,7 +39,7 @@ At first, clone this project and install all the dependencies.
 
     Use gulp to compile asset files and run Electron app.
 
-        gulp prd-ele
+        npm run prd-ele
 
 ## To Do
 
