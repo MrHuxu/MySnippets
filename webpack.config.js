@@ -12,8 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'vendor', 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/assets/'
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['', '.jsx', '.scss', '.js', '.json'],  // along the way, subsequent file(s) to be consumed by webpack
@@ -30,13 +29,13 @@ module.exports = {
         loaders: ['react-hot', 'babel']
       }, {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loaders: ['style-loader', 'css']
       }, {
         test: /(\.scss|\.sass)$/,
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap')
       }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader'
+        loader: 'file'
       }
     ]
   },

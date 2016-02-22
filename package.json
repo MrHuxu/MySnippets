@@ -7,7 +7,10 @@
   "scripts": {
     "start": "/Applications/Electron.app/Contents/MacOS/Electron .",
     "watch": "./node_modules/.bin/webpack-dev-server --port 6789",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:babel-register",
+    "build": "./node_modules/.bin/webpack",
+    "dev": "NODE_ENV=development node server --harmony",
+    "prd-ele": "NODE_ENV=production /Applications/Electron.app/Contents/MacOS/Electron ."
   },
   "author": "",
   "license": "MIT",
@@ -27,9 +30,6 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "flexboxgrid": "^6.3.0",
-    "gulp": "^3.9.1",
-    "gulp-shell": "^0.5.2",
-    "gulp-util": "^3.0.7",
     "highlight.js": "^9.1.0",
     "jquery": "^2.2.0",
     "material-ui": "^0.14.4",
