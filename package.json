@@ -10,7 +10,7 @@
     "test": "mocha --compilers js:babel-register",
     "build": "./node_modules/.bin/webpack",
     "dev": "NODE_ENV=development node server --harmony",
-    "prd-ele": "NODE_ENV=production /Applications/Electron.app/Contents/MacOS/Electron ."
+    "prd-ele": "npm run build && NODE_ENV=production /Applications/Electron.app/Contents/MacOS/Electron ."
   },
   "author": "",
   "license": "MIT",
