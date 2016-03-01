@@ -16,6 +16,13 @@ import Divider from 'material-ui/lib/divider';
 import SnippetItem from './SnippetItem';
 import { selectSnippet, fetchSnippets } from '../actions/SnippetActions';
 
+const style = {
+  snippetList: {
+    margin  : '10px 0 0 0',
+    padding : '0 0 70px 0'
+  }
+};
+
 class SnippetList extends List {
   constructor (props, context) {
     super(props, context);
@@ -51,8 +58,8 @@ class SnippetList extends List {
     const items = records.map((record, index) => <ListItem value={index} key={record._id}><SnippetItem metaData={record} expand={this.state.showDetail} /></ListItem>);
 
     return (
-      <div>
-        <div style={{marginTop: '10px'}}>
+      <div style={style.snippetList}>
+        <div>
           <FlatButton icon={<ListIcon />} primary={true} onClick={this.collapseCard} />
           <FlatButton icon={<ViewListIcon />} secondary={true} onClick={this.expantCard} />
         </div>

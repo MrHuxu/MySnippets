@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -28,20 +26,15 @@ module.exports = {
         exclude: /node_modules/,
         loaders: ['react-hot', 'babel']
       }, {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css']
-      }, {
-        test: /(\.scss|\.sass)$/,
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap')
+        test: /\.(scss|sass|css)$/,
+        loaders: ['style', 'css']
       }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file'
       }
     ]
   },
-  postcss: [autoprefixer],
   plugins: [
-    new ExtractTextPlugin('bundle.css', { allChunks: true }),  // compiled css (single file only)
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]

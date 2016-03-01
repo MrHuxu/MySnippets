@@ -7,16 +7,29 @@ import TextField from 'material-ui/lib/text-field';
 import SelectField from 'material-ui/lib/select-field';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import Paper from 'material-ui/lib/paper';
-import { Grid, Row, Col } from 'react-flexbox-grid/lib';
 import { updateSnippet } from '../actions/SnippetActions';
 
 const style = {
   global: {
-    margin: '10px 0 0 0'
+    margin  : '10px 0 0 0',
+    padding : '0 0 70px 0'
+  },
+
+  title: {
+    width   : '40%',
+    display : 'inline-block',
+    margin  : '0 0 0 20px'
+  },
+
+  lang: {
+    width         : '48%',
+    display       : 'inline-block',
+    margin        : '0 0 0 20px',
+    verticalAlign : 'top'
   },
 
   contentArea: {
-    margin: '20px 0 0 0'
+    margin: '20px 0 0 20px'
   }
 };
 
@@ -89,7 +102,7 @@ class SnippetEditor extends Component {
 
   render () {
     const { selectedId, snippet } = this.props;
-    const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>)
+    const menuItems = Object.keys(langs).map(key => <MenuItem key={key} value={langs[key]} primaryText={key}/>);
 
     const codeMirrorOptions = {
       theme           : 'solarized',
@@ -101,19 +114,18 @@ class SnippetEditor extends Component {
     };
 
     return selectedId ? (
-      <Grid fluid style={style.global}>
-        <Row>
+      <div style={style.global}>
 
-          <Col xs={6}>
+          <div style={style.title}>
             <TextField
               hintText          = "Title"
               valueLink         = {linkState(this, 'title')}
               floatingLabelText = "Enter Title"
               onBlur            = {this.updateCurrentSnippet}
             />
-          </Col>
+          </div>
 
-          <Col xs={6}>
+          <div style={style.lang}>
             <SelectField
               floatingLabelText = "Select Language"
               value             = {this.state.lang}
@@ -121,18 +133,17 @@ class SnippetEditor extends Component {
             >
               {menuItems}
             </SelectField>
-          </Col>
+          </div>
 
-          <Col xs={12} style={{marginTop: '30px'}}>
+          <div style={style.contentArea}>
             <CodeMirror
               value    = {this.state.content}
               onChange = {this.updateCode}
               options  = {codeMirrorOptions}
             />
-          </Col>
+          </div>
 
-        </Row>
-      </Grid>
+      </div>
     ) : null;
   }
 }

@@ -6,7 +6,7 @@ import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import IconButton from 'material-ui/lib/icon-button';
-import Colors from 'material-ui/lib/styles/colors';
+import * as Colors from 'material-ui/lib/styles/colors';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import VerticalAlignCenter from 'material-ui/lib/svg-icons/editor/vertical-align-center';
 import TextField from 'material-ui/lib/text-field';
@@ -56,23 +56,35 @@ class Menu extends Component {
   }
 
   shouldComponentUpdate (props, state) {
-    props.dispatch(fetchSnippets({
-      title: new RegExp(state.condition, 'i')
-    }, { updateSelectedId: true }));
-    return true;
+    if (this.state !== state) {
+      props.dispatch(fetchSnippets({
+        title: new RegExp(state.condition, 'i')
+      }, { updateSelectedId: true }));
+      return true;
+    } else {
+      return false;
+    }
   }
 
   render () {
+    const { records } = this.props;
+    var exportBlob = new Blob([JSON.stringify(records, null, 2)], {type : 'application/json'});
+    var exportURL = URL.createObjectURL(exportBlob);
+
     const actions = [
       <FlatButton
-        label      = "Import"
-        secondary  = {true}
-        onTouchTap = {this.closeExportDialog}
+        label            = "Import"
+        secondary        = {true}
+        onTouchTap       = {this.closeExportDialog}
+        linkButton       = {true}
+        containerElement = {<a href={exportURL} download={`My Snippets ${(new Date).toLocaleString()}`} />}
       />,
       <FlatButton
-        label      = "Export"
-        primary    = {true}
-        onTouchTap = {this.closeExportDialog}
+        label            = "Export"
+        primary          = {true}
+        onTouchTap       = {this.closeExportDialog}
+        linkButton       = {true}
+        containerElement = {<a href={exportURL} download={`My Snippets ${(new Date).toLocaleString()}`} />}
       />,
     ];
     return (
@@ -106,4 +118,10 @@ class Menu extends Component {
   }
 }
 
-export default connect()(Menu);
+var mapStateToProps = function (state) {
+  return {
+    records: state.snippet.ids.map(id => state.snippet.entities[id])
+  };
+};
+
+export default connect(mapStateToProps)(Menu);
