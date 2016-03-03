@@ -1,10 +1,10 @@
 import db from '../database/nedb.config';
 
 export const DELETE_SNIPPET = 'DELETE_SNIPPET';
-export function deleteSnippet (id) {
+export function deleteSnippet (title) {
   return {
     type    : DELETE_SNIPPET,
-    content : id
+    content : title
   };
 }
 
@@ -25,7 +25,7 @@ export function selectSnippet (id) {
 }
 
 export function fetchSnippets (query, option) {
-  return function (dispatch) {
+  return (dispatch) => {
     db.find(query).sort({ time: -1 }).exec((err, docs) => {
       var fetchResult = {
         ids        : [],
@@ -52,7 +52,7 @@ export function createSnippet () {
     lang    : 'javascript'
   };
 
-  return function (dispatch) {
+  return (dispatch) => {
     db.insert(doc, (err, doc) => {
       dispatch(fetchSnippets({}, { updateSelectedId: true }));
     });
@@ -60,18 +60,29 @@ export function createSnippet () {
 }
 
 export function updateSnippet (query, update) {
-  return function (dispatch) {
-    db.update(query, update, { multi: true }, function (err, numReplaced) {
+  return (dispatch) => {
+    db.update(query, update, { multi: true }, (err, numReplaced) => {
       dispatch(fetchSnippets({}, { updateSelectedId: false }));
     });
   };
 }
 
-export function destroySnippet (id) {
-  return function (dispatch) {
-    db.remove({ _id: id }, {}, function (err, numRemoved) {
+export function destroySnippet (query) {
+  return (dispatch) => {
+    db.remove(query, {}, (err, numRemoved) => {
+      console.log(query);
       dispatch(fetchSnippets({}, { updateSelectedId: true }));
-      dispatch(deleteSnippet(id));
+      dispatch(deleteSnippet(query.title));
+    });
+  };
+}
+
+export function importSnippets(docs) {
+  return (dispatch) => {
+    db.remove({}, { multi: true }, (err, numRemoved) => {
+      db.insert(docs, (err, numDocs) => {
+        dispatch(fetchSnippets({}, { updateSelectedId: true }));
+      });
     });
   };
 }

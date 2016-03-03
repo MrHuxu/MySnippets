@@ -12,7 +12,7 @@ import VerticalAlignCenter from 'material-ui/lib/svg-icons/editor/vertical-align
 import TextField from 'material-ui/lib/text-field';
 import FlatButton from 'material-ui/lib/flat-button';
 import Dialog from 'material-ui/lib/dialog';
-import { createSnippet, fetchSnippets } from '../actions/SnippetActions';
+import { createSnippet, fetchSnippets, importSnippets } from '../actions/SnippetActions';
 
 const style = {
   title: {
@@ -41,6 +41,9 @@ class Menu extends Component {
     this.handleClickAddButton = this.handleClickAddButton.bind(this);
     this.handleClickExportButton = this.handleClickExportButton.bind(this);
     this.closeExportDialog = this.closeExportDialog.bind(this);
+    this.openFileDialog = this.openFileDialog.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
+    this.importDataFromJson = this.importDataFromJson.bind(this);
   }
 
   handleClickAddButton () {
@@ -53,6 +56,26 @@ class Menu extends Component {
 
   closeExportDialog () {
     this.setState({ openExportDialog: false });
+  }
+
+  openFileDialog () {
+    var fileUploadDom = React.findDOMNode(this.refs.fileUpload);
+    fileUploadDom.click();
+  }
+
+  handleFileChange (evt) {
+    var file = evt.target.files[0];
+    evt.target.value = '';
+    var fileReader = new FileReader();
+    fileReader.onload = (e) => { 
+      var data = e.target.result;
+      this.importDataFromJson(data);
+    };
+    fileReader.readAsText(file);
+  }
+
+  importDataFromJson (data) {
+    this.props.dispatch(importSnippets(JSON.parse(data)));
   }
 
   shouldComponentUpdate (props, state) {
@@ -72,20 +95,21 @@ class Menu extends Component {
     var exportURL = URL.createObjectURL(exportBlob);
 
     const actions = [
+      <div>
+        <FlatButton
+          label            = 'Import'
+          secondary        = {true}
+          onTouchTap       = {this.closeExportDialog}
+          onClick          = {this.openFileDialog}
+        />
+      </div>,
       <FlatButton
-        label            = "Import"
-        secondary        = {true}
-        onTouchTap       = {this.closeExportDialog}
-        linkButton       = {true}
-        containerElement = {<a href={exportURL} download={`My Snippets ${(new Date).toLocaleString()}`} />}
-      />,
-      <FlatButton
-        label            = "Export"
+        label            = 'Export'
         primary          = {true}
         onTouchTap       = {this.closeExportDialog}
         linkButton       = {true}
         containerElement = {<a href={exportURL} download={`My Snippets ${(new Date).toLocaleString()}`} />}
-      />,
+      />
     ];
     return (
       <Toolbar style={{backgroundColor: Colors.cyan500}}>
@@ -99,6 +123,12 @@ class Menu extends Component {
 
         <ToolbarGroup lastChild={true} style={style.exportBtn} float='right'>
           <IconButton onClick={this.handleClickExportButton}><VerticalAlignCenter color={Colors.deepOrange800} /></IconButton>
+          <input
+            ref      = 'fileUpload'
+            type     = 'file'
+            style    = {{'display' : 'none'}}
+            onChange = {this.handleFileChange}
+          />
           <Dialog
             title          = 'Import or Export'
             modal          = {false}
@@ -119,8 +149,14 @@ class Menu extends Component {
 }
 
 var mapStateToProps = function (state) {
+  var records = state.snippet.ids.map(id => state.snippet.entities[id]);
+  var recordsWithoutIds = records.map(record => {
+    var copy = Object.assign({}, record);
+    delete copy._id;
+    return copy;
+  });
   return {
-    records: state.snippet.ids.map(id => state.snippet.entities[id])
+    records: recordsWithoutIds
   };
 };
 

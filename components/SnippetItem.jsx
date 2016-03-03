@@ -29,11 +29,14 @@ class SnippetItem extends Component {
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
 
-  handleCloseDialog (id, confirm) {
+  handleCloseDialog (id, title, confirm) {
     this.setState({
       openDialog: false
     });
-    if (confirm) this.props.dispatch(destroySnippet(id));
+    if (confirm) this.props.dispatch(destroySnippet({
+      _id   : id,
+      title : title
+    }));
   }
 
   handleClickDeleteButton (id) {
@@ -60,12 +63,12 @@ class SnippetItem extends Component {
         label           = "Cancel"
         secondary       = {true}
         keyboardFocused = {true}
-        onTouchTap      = {this.handleCloseDialog.bind(null, metaData._id, false)}
+        onTouchTap      = {this.handleCloseDialog.bind(null, metaData._id, metaData.title, false)}
       />,
       <FlatButton
         label      = "Delete"
         primary    = {true}
-        onTouchTap = {this.handleCloseDialog.bind(null, metaData._id, true)}
+        onTouchTap = {this.handleCloseDialog.bind(null, metaData._id, metaData.title, true)}
       />,
     ];
 
