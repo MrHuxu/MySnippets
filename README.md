@@ -43,5 +43,5 @@ At first, clone this project and install all the dependencies.
 
 ## To Do
 
-- [ ] export/import .json file
+- [x] export/import .json file
 - [ ] cloud sync through GitHub
