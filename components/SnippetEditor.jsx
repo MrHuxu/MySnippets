@@ -119,7 +119,6 @@ class SnippetEditor extends Component {
           <div style={style.title}>
             <TextField
               hintText          = "Title"
-              valueLink         = {linkState(this, 'title')}
               floatingLabelText = "Enter Title"
               onBlur            = {this.updateCurrentSnippet}
             />

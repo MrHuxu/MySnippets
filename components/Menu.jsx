@@ -141,7 +141,7 @@ class Menu extends Component {
         </ToolbarGroup>
 
         <ToolbarGroup float='right'>
-          <TextField hintText='Search' valueLink={linkState(this, 'condition')} />
+          <TextField hintText='Search'/>
         </ToolbarGroup>
       </Toolbar>
     );
