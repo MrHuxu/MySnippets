@@ -53,6 +53,7 @@ class SnippetEditor extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
     this.updateCode = this.updateCode.bind(this);
     this.checkSnippetChanged = this.checkSnippetChanged.bind(this);
     this.updateCurrentSnippet = this.updateCurrentSnippet.bind(this);
@@ -76,6 +77,10 @@ class SnippetEditor extends Component {
     } else {
       return false;
     }
+  }
+
+  updateTitle (e) {
+    this.state.title = e.target.value
   }
 
   updateCode (newContent) {
@@ -121,6 +126,7 @@ class SnippetEditor extends Component {
               hintText          = "Title"
               floatingLabelText = "Enter Title"
               onBlur            = {this.updateCurrentSnippet}
+              onChange          = {this.updateTitle}
             />
           </div>
 

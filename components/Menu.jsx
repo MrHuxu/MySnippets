@@ -44,6 +44,7 @@ class Menu extends Component {
     this.openFileDialog = this.openFileDialog.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
     this.importDataFromJson = this.importDataFromJson.bind(this);
+    this.handleConditionUpdate = this.handleConditionUpdate.bind(this);
   }
 
   handleClickAddButton () {
@@ -78,15 +79,10 @@ class Menu extends Component {
     this.props.dispatch(importSnippets(JSON.parse(data)));
   }
 
-  shouldComponentUpdate (props, state) {
-    if (this.state !== state) {
-      props.dispatch(fetchSnippets({
-        title: new RegExp(state.condition, 'i')
-      }, { updateSelectedId: true }));
-      return true;
-    } else {
-      return false;
-    }
+  handleConditionUpdate (e) {
+    this.props.dispatch(fetchSnippets({
+      title: new RegExp(e.target.value)
+    }, { updateSelectedId: true }));
   }
 
   render () {
@@ -141,7 +137,10 @@ class Menu extends Component {
         </ToolbarGroup>
 
         <ToolbarGroup float='right'>
-          <TextField hintText='Search'/>
+          <TextField
+            hintText = 'Search'
+            onChange = {this.handleConditionUpdate}
+          />
         </ToolbarGroup>
       </Toolbar>
     );
