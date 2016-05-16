@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import List from 'material-ui/lib/lists/list';
-import FlatButton from 'material-ui/lib/flat-button';
-import ListIcon from 'material-ui/lib/svg-icons/action/list';
-import ViewListIcon from 'material-ui/lib/svg-icons/action/view-list';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-const SelectableList = SelectableContainerEnhance(List);
-import ListItem from 'material-ui/lib/lists/list-item';
-import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
-import ActionInfo from 'material-ui/lib/svg-icons/action/info';
-import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
-import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
-import ContentSend from 'material-ui/lib/svg-icons/content/send';
-import Divider from 'material-ui/lib/divider';
+import { List, ListItem } from 'material-ui/List';
+import FlatButton from 'material-ui/FlatButton';
+import ListIcon from 'material-ui/svg-icons/action/list';
+import ViewListIcon from 'material-ui/svg-icons/action/view-list';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import Divider from 'material-ui/Divider';
 import SnippetItem from './SnippetItem';
 import { selectSnippet, fetchSnippets } from '../actions/SnippetActions';
 
@@ -64,14 +61,14 @@ class SnippetList extends List {
           <FlatButton icon={<ViewListIcon />} secondary={true} onClick={this.expantCard} />
         </div>
 
-        <SelectableList
-          valueLink={{
+        <List
+          value={{
             value         : this.props.selectedIndex,
             requestChange : this.handleUpdateSelectedIndex
           }}
         >
           {items}
-        </SelectableList>
+        </List>
       </div>
     );
   }

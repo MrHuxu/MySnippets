@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import linkState from 'react-link-state';
 import { connect } from 'react-redux';
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
-import IconButton from 'material-ui/lib/icon-button';
-import * as Colors from 'material-ui/lib/styles/colors';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
-import VerticalAlignCenter from 'material-ui/lib/svg-icons/editor/vertical-align-center';
-import TextField from 'material-ui/lib/text-field';
-import FlatButton from 'material-ui/lib/flat-button';
-import Dialog from 'material-ui/lib/dialog';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import IconButton from 'material-ui/IconButton';
+import * as Colors from 'material-ui/styles/colors';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import VerticalAlignCenter from 'material-ui/svg-icons/editor/vertical-align-center';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 import { createSnippet, fetchSnippets, importSnippets } from '../actions/SnippetActions';
 
 const style = {
@@ -141,7 +138,7 @@ class Menu extends Component {
         </ToolbarGroup>
 
         <ToolbarGroup float='right'>
-          <TextField hintText='Search' valueLink={linkState(this, 'condition')} />
+          <TextField hintText='Search' value={linkState(this, 'condition')} />
         </ToolbarGroup>
       </Toolbar>
     );

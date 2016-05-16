@@ -20,6 +20,8 @@ import reactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { rootStore } from './store';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 injectTapEventPlugin();
 
@@ -27,7 +29,9 @@ import App from './components/App.jsx';
 
 reactDom.render(
   <Provider store={rootStore}>
-    <App />
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <App />
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('my-snippets')
 );

@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import linkState from 'react-link-state';
 import { connect } from 'react-redux';
 import CodeMirror from 'react-codemirror';
-import TextField from 'material-ui/lib/text-field';
-import SelectField from 'material-ui/lib/select-field';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import Paper from 'material-ui/lib/paper';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
 import { updateSnippet } from '../actions/SnippetActions';
 
 const style = {

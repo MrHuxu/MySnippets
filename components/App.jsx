@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Snackbar from 'material-ui/lib/snackbar';
+import Snackbar from 'material-ui/Snackbar';
 import Menu from './Menu';
 import SnippetList from './SnippetList';
 import SnippetEditor from './SnippetEditor';
