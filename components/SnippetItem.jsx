@@ -73,7 +73,7 @@ class SnippetItem extends Component {
       <div>
         <Card>
           <CardHeader
-            title    = {metaData.title}
+            title    = {<p>{metaData.title}</p>}
             subtitle = {`@ ${metaData.time.toLocaleString()}`}
             avatar   = {langIcons[metaData.lang]}
           />

@@ -41,6 +41,7 @@ class Menu extends Component {
     this.openFileDialog = this.openFileDialog.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
     this.importDataFromJson = this.importDataFromJson.bind(this);
+    this._updateConditon = this._updateConditon.bind(this);
   }
 
   handleClickAddButton () {
@@ -73,6 +74,10 @@ class Menu extends Component {
 
   importDataFromJson (data) {
     this.props.dispatch(importSnippets(JSON.parse(data)));
+  }
+
+  _updateConditon (value) {
+    this.setState({ condition: value });
   }
 
   shouldComponentUpdate (props, state) {
@@ -138,7 +143,7 @@ class Menu extends Component {
         </ToolbarGroup>
 
         <ToolbarGroup float='right'>
-          <TextField hintText='Search' value={linkState(this, 'condition')} />
+          <TextField hintText='Search' onChange={this._updateConditon} />
         </ToolbarGroup>
       </Toolbar>
     );

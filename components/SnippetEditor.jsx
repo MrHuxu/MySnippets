@@ -53,6 +53,7 @@ class SnippetEditor extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this._updateTitle = this._updateTitle.bind(this);
     this.updateCode = this.updateCode.bind(this);
     this.checkSnippetChanged = this.checkSnippetChanged.bind(this);
     this.updateCurrentSnippet = this.updateCurrentSnippet.bind(this);
@@ -76,6 +77,10 @@ class SnippetEditor extends Component {
     } else {
       return false;
     }
+  }
+
+  _updateTitle (value) {
+    this.setState({ title: value });
   }
 
   updateCode (newContent) {
@@ -119,9 +124,9 @@ class SnippetEditor extends Component {
           <div style={style.title}>
             <TextField
               hintText          = "Title"
-              valueLink         = {linkState(this, 'title')}
-              floatingLabelText = "Enter Title"
+              floatingLabelText = "Eter Title"
               onBlur            = {this.updateCurrentSnippet}
+              onChange          = {this._updateTitle}
             />
           </div>
 
