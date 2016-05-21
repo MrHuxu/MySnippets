@@ -30,7 +30,6 @@
     "highlight.js": "^9.3.0",
     "jquery": "^2.2.3",
     "material-ui": "^0.15.0",
-    "materialize-css": "^0.97.6",
     "nedb": "^1.8.0",
     "node-sass": "^3.7.0",
     "postcss-loader": "^0.9.1",
@@ -47,10 +46,10 @@
     "style-loader": "^0.13.1",
     "toolbox-loader": "0.0.3",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.0"
   },
   "devDependencies": {
+    "webpack-dev-server": "^1.14.1",
     "chai": "^3.5.0",
     "mocha": "^2.4.5"
   }
