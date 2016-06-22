@@ -4,3 +4,4 @@ vendor/dist/bundle.js
 vendor/dist/bundle.css
 vendor/dist/assets
 snippets.db
+npm-debug.log
