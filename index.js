@@ -1,4 +1,3 @@
-import './node_modules/animate.css/animate.min.css';
 import './node_modules/codemirror/lib/codemirror.css';
 import './node_modules/codemirror/theme/solarized.css';
 
